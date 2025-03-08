@@ -1,0 +1,111 @@
+#----------
+# Modules
+#---------
+# 判断当前PowerShell版本
+if ($PSVersionTable.PSVersion.Major -lt 7) {
+	# PowerShell 5.x
+	Import-Module PSReadLine
+	Set-PSReadLineOption -PredictionSource History
+}
+else {
+	# PowerShell 7.x
+	# PSReadLine 在 PowerShell 7 中默认启用，无需额外导入
+}
+
+# 导入 Terminal-Icons 模块
+Import-Module Terminal-Icons
+
+# scoop Tab补全 via "scoop install scoop-completion"
+# Import-Module "$($(Get-Item $(Get-Command scoop.ps1).Path).Directory.Parent.FullName)\modules\scoop-completion"
+
+# PSFzF
+# Import-Module PSFzf
+# 启用PSFzF的tab补全
+# Set-PsFzfOption -TabExpansion
+# 启用fe搜索并打开文件进行编辑
+# Set-PsFzfOption -EnableAliasFuzzyEdit
+
+# chezmoi
+Import-Module {{ .chezmoi.homeDir }}/scoop/apps/chezmoi/current/completions/chezmoi.ps1
+
+#-------
+# Keys
+#-------
+# 设置 Ctrl+d 为退出 PowerShell
+Set-PSReadlineKeyHandler -Key "Ctrl+d" -Function ViExit
+# 设置 Ctrl+u 为清除从输入开始到游标的文本。 清除的文本放置在剪贴环中
+Set-PSReadlineKeyHandler -Key "Ctrl+u" -Function BackwardKillInput 
+# 设置 Ctrl+a 为移动光标到行首
+Set-PSReadlineKeyHandler -Key "Ctrl+a" -Function BeginningOfLine 
+# 设置 Ctrl+e 为移动光标到行尾
+Set-PSReadlineKeyHandler -Key "Ctrl+e" -Function EndOfLine 
+
+# Advanced Autocompletion for arrow keys
+Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
+Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
+
+# PSFzF覆盖默认快捷键
+# replace 'Ctrl+t' and 'Ctrl+r' with your preferred bindings:
+# Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
+# Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
+
+#------------------------
+# Environment Variables
+#------------------------
+# 定义要设置的环境变量名称和值
+$FZF_DEFAULT_OPTS_VALUE = "--reverse --border --height 50% --preview='bat {}'"
+$FZF_DEFAULT_COMMAND_VALUE = "powershell.exe -NoLogo -NoProfile -Noninteractive -Command ""Get-ChildItem -File -Recurse -Name"" "
+
+# 修改fzf默认参数
+# [System.Environment]::SetEnvironmentVariable('FZF_DEFAULT_OPTS', $FZF_DEFAULT_OPTS_VALUE, [System.EnvironmentVariableTarget]::User)
+# 解决powershell下fzf不能搜索隐藏文件
+# [System.Environment]::SetEnvironmentVariable('FZF_DEFAULT_COMMAND', $FZF_DEFAULT_COMMAND_VALUE, [System.EnvironmentVariableTarget]::User)
+
+
+function helloWorld {
+	Clear-Host
+	Write-Output ""
+	Write-Output "|\     /||\     /|(  ___  )( (    /|(  ____ \\__    _/|\     /|"
+	Write-Output "| )   ( || )   ( || (   ) ||  \  ( || (    \/   )  (  | )   ( |"
+	Write-Output "| (___) || |   | || (___) ||   \ | || |         |  |  | (___) |"
+	Write-Output "|  ___  || |   | ||  ___  || (\ \) || | ____    |  |  |  ___  |"
+	Write-Output "| (   ) || |   | || (   ) || | \   || | \_  )   |  |  | (   ) |"
+	Write-Output "| )   ( || (___) || )   ( || )  \  || (___) ||\_)  )  | )   ( |"
+	Write-Output "|/     \|(_______)|/     \||/    )_)(_______)(____/   |/     \|"
+	Write-Output ""
+	Write-Output " = = = = = = = = = = = = = 命令清单 = = = = = = = = = = = = =  "
+	Write-Output " scrcpy查看usb连接是否成功 ------ adbusb"
+	Write-Output " 息屏启动scrcpy-s ------ scrcpy"
+	Write-Output " ffmpeg下载m3u8成mp4 ------ ffmpeg2mp4 url filename"
+	Write-Output " 获取所有窗口的id,进程名,窗口标题 ------ gwp"
+	Write-Output " "
+}
+
+# powershell默认编码是GBK，改成UTF-8
+# [console]::OutputEncoding = [System.Text.Encoding]::UTF8
+
+# 环境变量
+$env:EDITOR = "nvim"
+{{- if eq .chezmoi.os "windows" }}
+# $env:VIMINIT="source $env:USERPROFILE\.config\vim\vimrc" # 自定义Vim配置文件路径, 会影响到nvim，使用nvim的时候注释掉
+$env:XDG_CONFIG_HOME="$env:USERPROFILE\.config" # 自定义Neovim配置文件路径
+{{- end }}
+
+# $env:PATH = "$HOME/.local/bin;$env:PATH"
+# $oldPath = [System.Environment]::GetEnvironmentVariable("Path", "User")
+# $newPath = "$HOME`\.local`\bin;$oldPath"
+# [System.Environment]::SetEnvironmentVariable("Path", $newPath, "User")
+
+. {{ .chezmoi.homeDir }}/.config/PowerShell/alias.ps1
+. {{ .chezmoi.homeDir }}/.config/PowerShell/prompt.ps1
+
+{{- if eq .mechine.name "vmware" }}
+# fnm
+fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
+fnm completions --shell powershell | Out-String | Invoke-Expression
+
+# uv
+(& uv generate-shell-completion powershell) | Out-String | Invoke-Expression
+(& uvx --generate-shell-completion powershell) | Out-String | Invoke-Expression
+
+{{- end }}
