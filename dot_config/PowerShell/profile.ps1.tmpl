@@ -99,13 +99,14 @@ $env:XDG_CONFIG_HOME="$env:USERPROFILE\.config" # 自定义Neovim配置文件路
 . {{ .chezmoi.homeDir }}/.config/PowerShell/alias.ps1
 . {{ .chezmoi.homeDir }}/.config/PowerShell/prompt.ps1
 
-{{- if eq .mechine.name "vmware" }}
 # fnm
-fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
-fnm completions --shell powershell | Out-String | Invoke-Expression
+if (Get-Command fnm -ErrorAction SilentlyContinue) {
+  fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
+  fnm completions --shell powershell | Out-String | Invoke-Expression
+}
 
 # uv
-(& uv generate-shell-completion powershell) | Out-String | Invoke-Expression
-(& uvx --generate-shell-completion powershell) | Out-String | Invoke-Expression
-
-{{- end }}
+if (Get-Command uv -ErrorAction SilentlyContinue) {
+  (& uv generate-shell-completion powershell) | Out-String | Invoke-Expression
+  (& uvx --generate-shell-completion powershell) | Out-String | Invoke-Expression
+}
