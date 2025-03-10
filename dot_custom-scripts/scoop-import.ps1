@@ -1,0 +1,1 @@
+scoop import ~/scoop-app.json
