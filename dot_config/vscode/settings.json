@@ -1,0 +1,49 @@
+{
+  /* theme && font------------------------------- */
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.colorTheme": "Dracula Theme",
+  "workbench.activityBar.location": "top",
+  "editor.fontFamily": "FiraCode Nerd Font, 'Courier New', monospace",
+  // git
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false, // 不要跳确认弹窗
+  // 不要隐藏项目里的.git文件夹
+  "files.exclude": {
+    "**/.git": false
+  },
+  // edit
+  "files.autoSave": "onFocusChange",
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "editor.formatOnSave": true,
+  "editor.cursorSmoothCaretAnimation": "on", // 启用平滑的光标移动动画
+  "workbench.colorCustomizations": {
+    "editorBracketMatch.background": "#02fd30" // 自定义括号配对显示的颜色
+  },
+  /* explorer----------------------------------- */
+  "explorer.confirmDelete": false, // 删除文件的时候不要弹窗
+  "explorer.confirmPasteNative": false, // 从资源管理器直接复制粘贴文件到vscode不弹窗
+  "explorer.confirmDragAndDrop": false, // 拖拽文件到vscode不弹窗
+  /* ------------------------------------------ */
+  /* extensions                                 */
+  /* ------------------------------------------ */
+  // vscodevim.vim
+  "vim.useCtrlKeys": false,
+  "vim.useSystemClipboard": true,
+  // asvetliakov.vscode-neovim
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "vscode-neovim.ctrlKeysForInsertMode": ["c"], // 让ctrl键在Insert Mode下触发vscode的键绑定
+  "vscode-neovim.ctrlKeysForNormalMode": [], // 让ctrl键在Normal Mode下触发vscode的键绑定
+  // Wangguixuan.var-translate-en
+  "var-translate-en.baiduSecretKey": "xxxxxxxxxxxx",
+  "var-translate-en.baiduAppid": "xxxxxxxxxxxx",
+  "var-translate-en.translateServe": "baidu",
+  // alefragnani.project-manager 习惯将所有git管理的项目都放在桌面
+  "projectManager.git.baseFolders": [
+    "~/Desktop",
+    "~/.local/share",
+    "~/Documents"
+  ]
+}

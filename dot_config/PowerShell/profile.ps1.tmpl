@@ -88,7 +88,10 @@ function helloWorld {
 $env:EDITOR = "nvim"
 {{- if eq .chezmoi.os "windows" }}
 # $env:VIMINIT="source $env:USERPROFILE\.config\vim\vimrc" # 自定义Vim配置文件路径, 会影响到nvim，使用nvim的时候注释掉
-$env:XDG_CONFIG_HOME="$env:USERPROFILE\.config" # 自定义Neovim配置文件路径
+
+# 自定义Neovim配置文件路径
+# $env:XDG_CONFIG_HOME="$env:USERPROFILE\.config" # 只有powershell中的nvim会生效
+[Environment]::SetEnvironmentVariable("XDG_CONFIG_HOME", "$($env:USERPROFILE)\.config", "User") # 便于让其他不是powershell的程序(比如vscode使用neovim插件)使用，跟手动在“编辑系统环境变量”程序中设置的环境变量一致
 {{- end }}
 
 # $env:PATH = "$HOME/.local/bin;$env:PATH"

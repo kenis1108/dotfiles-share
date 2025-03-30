@@ -49,26 +49,29 @@
 
 ### 编辑器配置
 
-| 配置文件          | 路径                                  | 说明                  |
-| ----------------- | ------------------------------------- | --------------------- |
-| Neovim（Windows） | `AppData/Local/nvim`                  | Neovim 配置文件       |
-| Neovim（Linux）   | `~/.config/nvim`                      | Neovim 配置文件       |
-| Neovide           | `AppData/Roaming/neovide/config.toml` | Neovide 配置文件      |
-| VSCode            | `AppData/Roaming/Code`                | VSCode 配置文件       |
-| Cursor            | `AppData/Roaming/Cursor`              | Cursor 编辑器配置     |
-| Vim (Windows)     | `_vimrc`                              | Windows 下的 Vim 配置 |
-| Vim (Linux)       | `.vimrc`                              | Linux 下的 Vim 配置   |
+| 配置文件          | 路径                                  | 说明                                                              |
+| ----------------- | ------------------------------------- | ----------------------------------------------------------------- |
+| Neovim（Windows） | `AppData/Local/nvim`                  | Neovim 配置文件                                                   |
+| Neovim（Linux）   | `~/.config/nvim`                      | Neovim 配置文件                                                   |
+| Neovide           | `AppData/Roaming/neovide/config.toml` | Neovide 配置文件                                                  |
+| VSCode            | `~/.config/vscode`                    | VSCode 配置文件，不同平台通过创建符号链接来共用一个地方的配置文件 |
+| Vim (Windows)     | `_vimrc`                              | Windows 下的 Vim 配置                                             |
+| Vim (Linux)       | `.vimrc`                              | Linux 下的 Vim 配置                                               |
 
 #### Neovim 注意事项
 
 - 需要提前安装 gcc：`scoop install gcc`
-- 需要提前安装 node：`scoop install nvm-windows`
+- 需要提前安装 Node.js：`scoop install fnm`
+- 需要提前安装 Python: `scoop install uv`
 
 #### VSCode 说明
 
 - 配置文件包括设置和快捷键
 - 配合 VSCode 的同步功能一起使用
 - 不同 Profile 的配置文件继承 Default 配置文件
+- 创建符号链接：
+  - Windows 使用 PowerShell `New-Item -ItemType SymbolicLink -Path “C:\Users\kenis\scoop\persist\vscode\data\user-data\User\settings.json” -Target “C:\Users\kenis\.config\vscode\settings.json”`
+  - Linux/Mac 使用 `ln -s ~/.config/vscode/settings.json ~/.config/Code/User/settings.json`
 
 #### Cursor 说明
 
@@ -81,7 +84,9 @@
 | ------------ | -------------------------------------------------------------- | ------------------------- |
 | PowerShell 7 | `Documents/PowerShell/Microsoft.PowerShell_profile.ps1`        | PowerShell 7 配置         |
 | PowerShell 5 | `Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1` | Windows PowerShell 5 配置 |
-| Zsh          | `.zshrc`                                                       | Zsh 配置文件              |
+| Zsh          | `.zshrc`和`~/.config/zsh`                                      | Zsh 配置文件              |
+| fish         | `~/.config/fish`                                               | Zsh 配置文件              |
+| Bash         | `~/.config/bash`                                               | Zsh 配置文件              |
 
 ### 系统配置
 
