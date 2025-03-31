@@ -1,3 +1,4 @@
+-- TODO: 其实在vscode里使用nvim也可以使用这个插件，所以要改下插件名了
 return {
   "kenis1108/wslcwin.nvim",
   event = "VeryLazy",
