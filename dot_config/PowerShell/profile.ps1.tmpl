@@ -4,7 +4,7 @@
 # 判断当前PowerShell版本
 if ($PSVersionTable.PSVersion.Major -lt 7) {
 	# PowerShell 5.x
-	Import-Module PSReadLine
+  Import-Module PSReadLine
 	Set-PSReadLineOption -PredictionSource History
 }
 else {
@@ -13,6 +13,14 @@ else {
 }
 
 # 导入 Terminal-Icons 模块
+if (-not (Get-Module -ListAvailable -Name Terminal-Icons)) {
+  if (-not (Get-Command scoop -ErrorAction SilentlyContinue)) {
+    Write-Host "Scoop is not installed. Please install Scoop first." -ForegroundColor Red
+  } else {
+    Write-Host "Installing Terminal-Icons module using Scoop..." -ForegroundColor Yellow
+    scoop install terminal-icons
+  }
+}
 Import-Module Terminal-Icons
 
 # scoop Tab补全 via "scoop install scoop-completion"
