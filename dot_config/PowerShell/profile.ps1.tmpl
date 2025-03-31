@@ -3,8 +3,20 @@
 #---------
 # 判断当前PowerShell版本
 if ($PSVersionTable.PSVersion.Major -lt 7) {
-	# PowerShell 5.x
-	Import-Module PSReadLine
+  # PowerShell 5.x
+  if (Test-Path "C:\Program Files\WindowsPowerShell\Modules\PSReadLine") {
+    Write-Host "请先关闭所有powershell进程 然后在文件资源管理器里面 删除 'C:\Program Files\WindowsPowerShell\Modules\PSReadLine'" -ForegroundColor Yellow
+    return
+  }
+  if (-not (Get-Module -ListAvailable -Name PSReadLine)) {
+    if (-not (Get-Command scoop -ErrorAction SilentlyContinue)) {
+      Write-Host "Scoop is not installed. Please install Scoop first." -ForegroundColor Red
+    } else {
+      Write-Host "Installing PSReadLine module using Scoop..." -ForegroundColor Yellow
+      scoop install psreadline
+    }
+  }
+  Import-Module PSReadLine
 	Set-PSReadLineOption -PredictionSource History
 }
 else {
@@ -13,6 +25,14 @@ else {
 }
 
 # 导入 Terminal-Icons 模块
+if (-not (Get-Module -ListAvailable -Name Terminal-Icons)) {
+  if (-not (Get-Command scoop -ErrorAction SilentlyContinue)) {
+    Write-Host "Scoop is not installed. Please install Scoop first." -ForegroundColor Red
+  } else {
+    Write-Host "Installing Terminal-Icons module using Scoop..." -ForegroundColor Yellow
+    scoop install terminal-icons
+  }
+}
 Import-Module Terminal-Icons
 
 # scoop Tab补全 via "scoop install scoop-completion"
