@@ -1,0 +1,10 @@
+[git]
+  autoCommit = true
+  autoPush = true
+
+[data.gitconfig]
+  email = "xxxxxx@xx.com"
+  name = "kenis"
+
+[data.mechine]
+  name = "vmware" # "DMJL" "DMJL-WSL2-NixOS" "DAMINGJINGLUO" "vmware" "qemu"
