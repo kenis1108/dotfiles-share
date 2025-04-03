@@ -45,5 +45,9 @@
     "~/Desktop",
     "~/.local/share",
     "~/Documents"
-  ]
+  ],
+  // OBKoro1.korofileheader
+  "fileheader.configObj": {
+    "autoAdd": false // 是否自动添加文件头
+  }
 }
