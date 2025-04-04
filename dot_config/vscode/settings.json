@@ -41,11 +41,13 @@
   "var-translate-en.baiduSecretKey": "xxxxxxxxxxxx",
   "var-translate-en.baiduAppid": "xxxxxxxxxxxx",
   "var-translate-en.translateServe": "baidu",
-  // alefragnani.project-manager 习惯将所有git管理的项目都放在桌面
+  // alefragnani.project-manager
   "projectManager.git.baseFolders": [
     "~/Desktop",
-    "~/.local/share",
-    "~/Documents"
+    "~/桌面",
+    "~/Documents",
+    "~/文档",
+    "~/.local/share"
   ],
   // OBKoro1.korofileheader
   "fileheader.configObj": {
