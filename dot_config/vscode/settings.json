@@ -1,7 +1,7 @@
 {
   /* theme && font------------------------------- */
   "workbench.iconTheme": "vscode-icons",
-  "workbench.colorTheme": "Dracula Theme",
+  "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.activityBar.location": "top",
   "editor.fontFamily": "FiraCode Nerd Font, 'Courier New', monospace",
   // git
