@@ -1,0 +1,1 @@
+Start-Process powershell.exe -ArgumentList "-WindowStyle Hidden", "-Command", "./sshd.exe -f ./sshd_config"
