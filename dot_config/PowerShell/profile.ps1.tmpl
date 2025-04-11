@@ -35,6 +35,17 @@ if (-not (Get-Module -ListAvailable -Name Terminal-Icons)) {
 }
 Import-Module Terminal-Icons
 
+# 导入 gsudoModule 模块
+if (-not (Get-Module -ListAvailable -Name gsudoModule)) {
+  if (-not (Get-Command scoop -ErrorAction SilentlyContinue)) {
+    Write-Host "Scoop is not installed. Please install Scoop first." -ForegroundColor Red
+  } else {
+    Write-Host "Installing gsudoModule module using Scoop..." -ForegroundColor Yellow
+    scoop install gsudo
+  }
+}
+Import-Module gsudoModule
+
 # scoop Tab补全 via "scoop install scoop-completion"
 # Import-Module "$($(Get-Item $(Get-Command scoop.ps1).Path).Directory.Parent.FullName)\modules\scoop-completion"
 
