@@ -162,19 +162,19 @@ window_rules:
 
       - window_process: { regex: "ScreenToGif" }
 
-  # - commands: ['move --workspace 2']
-  #   match:
-  #     - window_process: { regex: 'Cursor|msedge' }
+  - commands: ["move --workspace 2"]
+    match:
+      - window_process: { regex: "Cursor|msedge" }
 
-  # - commands: ['move --workspace 3']
-  #   match:
-  #     # Move mstsc (RDP) windows to workspace 3
-  #     - window_process: { regex: 'mstsc' }
+  - commands: ["move --workspace 3"]
+    match:
+      # Move mstsc (RDP) windows to workspace 3
+      - window_process: { regex: "mstsc" }
 
-  # - commands: ['move --workspace 4']
-  #   match:
-  #     # Move WeChat and WXWork windows to workspace 4
-  # - window_process: { regex: "WeChat|WXWork"
+  - commands: ["move --workspace 4"]
+    match:
+      # Move WeChat and WXWork windows to workspace 4
+  - window_process: { regex: "WeChat|WXWork" }
 
 binding_modes:
   # When enabled, the focused window can be resized via arrow keys or HJKL.
