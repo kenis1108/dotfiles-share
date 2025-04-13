@@ -1,4 +1,405 @@
 {
+    "apps": [
+        {
+            "Name": "7zip",
+            "Source": "main",
+            "Version": "23.01",
+            "Info": "",
+            "Updated": "2023-11-10T12:55:27.533828+08:00"
+        },
+        {
+            "Name": "adb",
+            "Source": "main",
+            "Version": "35.0.2",
+            "Info": "",
+            "Updated": "2024-12-24T16:25:53.6248799+08:00"
+        },
+        {
+            "Name": "autohotkey-portable",
+            "Source": "apps",
+            "Version": "2.0.19",
+            "Info": "",
+            "Updated": "2025-04-13T14:44:25.4185268+08:00"
+        },
+        {
+            "Name": "bat",
+            "Source": "main",
+            "Version": "0.24.0",
+            "Info": "",
+            "Updated": "2024-12-18T10:08:49.7092437+08:00"
+        },
+        {
+            "Name": "cacert",
+            "Source": "main",
+            "Version": "2024-12-31",
+            "Info": "",
+            "Updated": "2025-02-23T16:44:02.4928897+08:00"
+        },
+        {
+            "Name": "carnac",
+            "Source": "extras",
+            "Version": "2.3.13",
+            "Info": "",
+            "Updated": "2025-02-27T20:33:06.6512157+08:00"
+        },
+        {
+            "Name": "chezmoi",
+            "Source": "main",
+            "Version": "2.52.0",
+            "Info": "",
+            "Updated": "2024-08-09T21:38:38.9328622+08:00"
+        },
+        {
+            "Name": "clash-verge-rev",
+            "Source": "extras",
+            "Version": "2.2.3",
+            "Info": "",
+            "Updated": "2025-04-12T10:16:42.7252514+08:00"
+        },
+        {
+            "Name": "dark",
+            "Source": "main",
+            "Version": "3.14",
+            "Info": "",
+            "Updated": "2024-08-09T21:58:13.1958228+08:00"
+        },
+        {
+            "Name": "everything",
+            "Source": "apps",
+            "Version": "1.4.1.1024",
+            "Info": "",
+            "Updated": "2023-11-11T10:16:49.6464685+08:00"
+        },
+        {
+            "Name": "fd",
+            "Source": "main",
+            "Version": "10.2.0",
+            "Info": "",
+            "Updated": "2025-02-23T16:43:39.0210735+08:00"
+        },
+        {
+            "Name": "feishu",
+            "Source": "apps",
+            "Version": "7.38.6",
+            "Info": "",
+            "Updated": "2025-03-15T17:15:55.9514391+08:00"
+        },
+        {
+            "Name": "firaCode-NF",
+            "Source": "apps",
+            "Version": "3.2.1",
+            "Info": "",
+            "Updated": "2024-08-22T23:45:26.0285066+08:00"
+        },
+        {
+            "Name": "fzf",
+            "Source": "main",
+            "Version": "0.57.0",
+            "Info": "",
+            "Updated": "2025-01-14T11:04:33.770507+08:00"
+        },
+        {
+            "Name": "gcc",
+            "Source": "main",
+            "Version": "13.2.0",
+            "Info": "",
+            "Updated": "2025-02-20T10:00:23.3333618+08:00"
+        },
+        {
+            "Name": "ghostscript",
+            "Source": "main",
+            "Version": "10.04.0",
+            "Info": "",
+            "Updated": "2025-02-23T17:00:20.0591723+08:00"
+        },
+        {
+            "Name": "git",
+            "Source": "main",
+            "Version": "2.46.0",
+            "Info": "",
+            "Updated": "2024-08-09T21:29:26.2733566+08:00"
+        },
+        {
+            "Name": "glazewm",
+            "Source": "extras",
+            "Version": "3.8.1",
+            "Info": "",
+            "Updated": "2025-04-13T14:57:55.2192418+08:00"
+        },
+        {
+            "Name": "gsudo",
+            "Source": "main",
+            "Version": "2.6.0",
+            "Info": "",
+            "Updated": "2025-04-12T10:24:12.0086508+08:00"
+        },
+        {
+            "Name": "hiddify",
+            "Source": "extras",
+            "Version": "2.5.7",
+            "Info": "",
+            "Updated": "2025-03-30T16:37:39.2360836+08:00"
+        },
+        {
+            "Name": "imagemagick",
+            "Source": "main",
+            "Version": "7.1.1-44",
+            "Info": "",
+            "Updated": "2025-02-23T16:56:16.5957322+08:00"
+        },
+        {
+            "Name": "imtip",
+            "Source": "apps",
+            "Version": "7.3",
+            "Info": "",
+            "Updated": "2025-04-13T16:04:36.8566278+08:00"
+        },
+        {
+            "Name": "innounp",
+            "Source": "main",
+            "Version": "0.50",
+            "Info": "",
+            "Updated": "2024-08-09T21:58:15.3805425+08:00"
+        },
+        {
+            "Name": "jq",
+            "Source": "main",
+            "Version": "1.7.1",
+            "Info": "",
+            "Updated": "2025-04-13T22:16:37.0957908+08:00"
+        },
+        {
+            "Name": "lazygit",
+            "Source": "extras",
+            "Version": "0.48.0",
+            "Info": "",
+            "Updated": "2025-03-11T22:01:38.3457299+08:00"
+        },
+        {
+            "Name": "librewolf",
+            "Source": "extras",
+            "Version": "136.0.4-1",
+            "Info": "",
+            "Updated": "2025-04-04T18:28:36.3054801+08:00"
+        },
+        {
+            "Name": "micro",
+            "Source": "main",
+            "Version": "2.0.14",
+            "Info": "",
+            "Updated": "2025-04-13T12:28:31.6057443+08:00"
+        },
+        {
+            "Name": "neovim",
+            "Source": "main",
+            "Version": "0.10.3",
+            "Info": "",
+            "Updated": "2024-12-25T21:52:54.660859+08:00"
+        },
+        {
+            "Name": "neteasemusic",
+            "Source": "apps",
+            "Version": "3.1.4.203507",
+            "Info": "",
+            "Updated": "2025-03-15T15:20:34.3752727+08:00"
+        },
+        {
+            "Name": "obsidian",
+            "Source": "apps",
+            "Version": "1.7.7",
+            "Info": "",
+            "Updated": "2025-01-15T12:00:22.9694819+08:00"
+        },
+        {
+            "Name": "OBSStudio-Portable",
+            "Source": "apps",
+            "Version": "31.0.1",
+            "Info": "",
+            "Updated": "2025-02-26T11:47:36.0389278+08:00"
+        },
+        {
+            "Name": "potplayer-Portable",
+            "Source": "apps",
+            "Version": "240618",
+            "Info": "",
+            "Updated": "2024-08-09T21:37:41.9690863+08:00"
+        },
+        {
+            "Name": "qqnt",
+            "Source": "apps",
+            "Version": "9.9.18.250318",
+            "Info": "",
+            "Updated": "2025-03-29T15:50:50.209194+08:00"
+        },
+        {
+            "Name": "ripgrep",
+            "Source": "main",
+            "Version": "14.1.1",
+            "Info": "",
+            "Updated": "2025-02-23T16:36:28.1130536+08:00"
+        },
+        {
+            "Name": "Rufus-Portable",
+            "Source": "apps",
+            "Version": "4.5",
+            "Info": "",
+            "Updated": "2024-12-10T10:53:18.807815+08:00"
+        },
+        {
+            "Name": "scrcpy",
+            "Source": "main",
+            "Version": "3.1",
+            "Info": "",
+            "Updated": "2024-12-24T16:30:00.5031055+08:00"
+        },
+        {
+            "Name": "Snipaste-Portable",
+            "Source": "apps",
+            "Version": "2.8.8-Beta",
+            "Info": "",
+            "Updated": "2023-11-10T17:15:19.2099441+08:00"
+        },
+        {
+            "Name": "spacesniffer",
+            "Source": "extras",
+            "Version": "1.3.0.2",
+            "Info": "",
+            "Updated": "2025-02-19T17:31:36.3013363+08:00"
+        },
+        {
+            "Name": "starship",
+            "Source": "main",
+            "Version": "1.21.1",
+            "Info": "",
+            "Updated": "2024-12-17T09:30:32.2176646+08:00"
+        },
+        {
+            "Name": "synergy",
+            "Source": "apps",
+            "Version": "1.11.1",
+            "Info": "",
+            "Updated": "2025-01-18T19:45:26.028702+08:00"
+        },
+        {
+            "Name": "tailscale",
+            "Source": "extras",
+            "Version": "1.78.1",
+            "Info": "",
+            "Updated": "2025-01-19T09:56:37.2520795+08:00"
+        },
+        {
+            "Name": "tightvnc",
+            "Source": "extras",
+            "Version": "2.8.85",
+            "Info": "",
+            "Updated": "2025-02-09T17:12:17.9162379+08:00"
+        },
+        {
+            "Name": "todesk",
+            "Source": "apps",
+            "Version": "4.7.4.3",
+            "Info": "",
+            "Updated": "2024-08-24T13:48:41.7938898+08:00"
+        },
+        {
+            "Name": "tssh",
+            "Source": "main",
+            "Version": "0.1.21",
+            "Info": "",
+            "Updated": "2024-08-09T21:56:25.8098138+08:00"
+        },
+        {
+            "Name": "Ventoy-Portable",
+            "Source": "apps",
+            "Version": "1.0.99",
+            "Info": "",
+            "Updated": "2024-12-10T10:40:45.438209+08:00"
+        },
+        {
+            "Name": "vitrite",
+            "Source": "apps",
+            "Version": "1.1.1",
+            "Info": "",
+            "Updated": "2025-01-13T13:32:23.2402648+08:00"
+        },
+        {
+            "Name": "vncviewer",
+            "Source": "apps",
+            "Version": "7.13.1",
+            "Info": "",
+            "Updated": "2024-12-26T10:22:19.8692042+08:00"
+        },
+        {
+            "Name": "vscode",
+            "Source": "apps",
+            "Version": "1.98.2",
+            "Info": "",
+            "Updated": "2025-03-30T12:41:28.6998895+08:00"
+        },
+        {
+            "Name": "wechat",
+            "Source": "apps",
+            "Version": "3.9.12.51",
+            "Info": "",
+            "Updated": "2025-03-15T15:19:55.0991576+08:00"
+        },
+        {
+            "Name": "wegame",
+            "Source": "apps",
+            "Version": "5.9.1.1113",
+            "Info": "",
+            "Updated": "2025-03-29T15:48:31.3982159+08:00"
+        },
+        {
+            "Name": "wget",
+            "Source": "main",
+            "Version": "1.21.4",
+            "Info": "",
+            "Updated": "2025-02-23T16:44:43.1945591+08:00"
+        },
+        {
+            "Name": "win-vind",
+            "Source": "extras",
+            "Version": "5.13.2",
+            "Info": "",
+            "Updated": "2025-02-22T11:40:34.8362584+08:00"
+        },
+        {
+            "Name": "winfetch",
+            "Source": "main",
+            "Version": "2.5.1",
+            "Info": "",
+            "Updated": "2025-04-13T23:21:21.3214183+08:00"
+        },
+        {
+            "Name": "WPS-CN",
+            "Source": "apps",
+            "Version": "12.1.0.19770",
+            "Info": "",
+            "Updated": "2025-01-06T16:24:10.98551+08:00"
+        },
+        {
+            "Name": "yasb",
+            "Source": "extras",
+            "Version": "1.6.9",
+            "Info": "",
+            "Updated": "2025-04-12T12:10:59.1192357+08:00"
+        },
+        {
+            "Name": "yazi",
+            "Source": "main",
+            "Version": "0.4.2",
+            "Info": "",
+            "Updated": "2025-01-15T11:54:50.9052874+08:00"
+        },
+        {
+            "Name": "zoxide",
+            "Source": "main",
+            "Version": "0.9.7",
+            "Info": "",
+            "Updated": "2025-04-13T22:05:05.2811111+08:00"
+        }
+    ],
     "buckets": [
         {
             "Name": "main",
@@ -23,400 +424,6 @@
             "Source": "https://github.com/chawyehsu/dorado.git",
             "Updated": "2025-04-13T19:22:22+08:00",
             "Manifests": 258
-        }
-    ],
-    "apps": [
-        {
-            "Name": "7zip",
-            "Info": "",
-            "Source": "main",
-            "Updated": "2023-11-10T12:55:27.533828+08:00",
-            "Version": "23.01"
-        },
-        {
-            "Name": "adb",
-            "Info": "",
-            "Source": "main",
-            "Updated": "2024-12-24T16:25:53.6248799+08:00",
-            "Version": "35.0.2"
-        },
-        {
-            "Name": "autohotkey-portable",
-            "Info": "",
-            "Source": "apps",
-            "Updated": "2025-04-13T14:44:25.4185268+08:00",
-            "Version": "2.0.19"
-        },
-        {
-            "Name": "bat",
-            "Info": "",
-            "Source": "main",
-            "Updated": "2024-12-18T10:08:49.7092437+08:00",
-            "Version": "0.24.0"
-        },
-        {
-            "Name": "cacert",
-            "Info": "",
-            "Source": "main",
-            "Updated": "2025-02-23T16:44:02.4928897+08:00",
-            "Version": "2024-12-31"
-        },
-        {
-            "Name": "carnac",
-            "Info": "",
-            "Source": "extras",
-            "Updated": "2025-02-27T20:33:06.6512157+08:00",
-            "Version": "2.3.13"
-        },
-        {
-            "Name": "chezmoi",
-            "Info": "",
-            "Source": "main",
-            "Updated": "2024-08-09T21:38:38.9328622+08:00",
-            "Version": "2.52.0"
-        },
-        {
-            "Name": "clash-verge-rev",
-            "Info": "",
-            "Source": "extras",
-            "Updated": "2025-04-12T10:16:42.7252514+08:00",
-            "Version": "2.2.3"
-        },
-        {
-            "Name": "dark",
-            "Info": "",
-            "Source": "main",
-            "Updated": "2024-08-09T21:58:13.1958228+08:00",
-            "Version": "3.14"
-        },
-        {
-            "Name": "everything",
-            "Info": "",
-            "Source": "apps",
-            "Updated": "2023-11-11T10:16:49.6464685+08:00",
-            "Version": "1.4.1.1024"
-        },
-        {
-            "Name": "fd",
-            "Info": "",
-            "Source": "main",
-            "Updated": "2025-02-23T16:43:39.0210735+08:00",
-            "Version": "10.2.0"
-        },
-        {
-            "Name": "feishu",
-            "Info": "",
-            "Source": "apps",
-            "Updated": "2025-03-15T17:15:55.9514391+08:00",
-            "Version": "7.38.6"
-        },
-        {
-            "Name": "firaCode-NF",
-            "Info": "",
-            "Source": "apps",
-            "Updated": "2024-08-22T23:45:26.0285066+08:00",
-            "Version": "3.2.1"
-        },
-        {
-            "Name": "fzf",
-            "Info": "",
-            "Source": "main",
-            "Updated": "2025-01-14T11:04:33.770507+08:00",
-            "Version": "0.57.0"
-        },
-        {
-            "Name": "gcc",
-            "Info": "",
-            "Source": "main",
-            "Updated": "2025-02-20T10:00:23.3333618+08:00",
-            "Version": "13.2.0"
-        },
-        {
-            "Name": "ghostscript",
-            "Info": "",
-            "Source": "main",
-            "Updated": "2025-02-23T17:00:20.0591723+08:00",
-            "Version": "10.04.0"
-        },
-        {
-            "Name": "git",
-            "Info": "",
-            "Source": "main",
-            "Updated": "2024-08-09T21:29:26.2733566+08:00",
-            "Version": "2.46.0"
-        },
-        {
-            "Name": "glazewm",
-            "Info": "",
-            "Source": "extras",
-            "Updated": "2025-04-13T14:57:55.2192418+08:00",
-            "Version": "3.8.1"
-        },
-        {
-            "Name": "gsudo",
-            "Info": "",
-            "Source": "main",
-            "Updated": "2025-04-12T10:24:12.0086508+08:00",
-            "Version": "2.6.0"
-        },
-        {
-            "Name": "hiddify",
-            "Info": "",
-            "Source": "extras",
-            "Updated": "2025-03-30T16:37:39.2360836+08:00",
-            "Version": "2.5.7"
-        },
-        {
-            "Name": "imagemagick",
-            "Info": "",
-            "Source": "main",
-            "Updated": "2025-02-23T16:56:16.5957322+08:00",
-            "Version": "7.1.1-44"
-        },
-        {
-            "Name": "imtip",
-            "Info": "",
-            "Source": "apps",
-            "Updated": "2025-04-13T16:04:36.8566278+08:00",
-            "Version": "7.3"
-        },
-        {
-            "Name": "innounp",
-            "Info": "",
-            "Source": "main",
-            "Updated": "2024-08-09T21:58:15.3805425+08:00",
-            "Version": "0.50"
-        },
-        {
-            "Name": "jq",
-            "Info": "",
-            "Source": "main",
-            "Updated": "2025-04-13T22:16:37.0957908+08:00",
-            "Version": "1.7.1"
-        },
-        {
-            "Name": "lazygit",
-            "Info": "",
-            "Source": "extras",
-            "Updated": "2025-03-11T22:01:38.3457299+08:00",
-            "Version": "0.48.0"
-        },
-        {
-            "Name": "librewolf",
-            "Info": "",
-            "Source": "extras",
-            "Updated": "2025-04-04T18:28:36.3054801+08:00",
-            "Version": "136.0.4-1"
-        },
-        {
-            "Name": "micro",
-            "Info": "",
-            "Source": "main",
-            "Updated": "2025-04-13T12:28:31.6057443+08:00",
-            "Version": "2.0.14"
-        },
-        {
-            "Name": "neovim",
-            "Info": "",
-            "Source": "main",
-            "Updated": "2024-12-25T21:52:54.660859+08:00",
-            "Version": "0.10.3"
-        },
-        {
-            "Name": "neteasemusic",
-            "Info": "",
-            "Source": "apps",
-            "Updated": "2025-03-15T15:20:34.3752727+08:00",
-            "Version": "3.1.4.203507"
-        },
-        {
-            "Name": "obsidian",
-            "Info": "",
-            "Source": "apps",
-            "Updated": "2025-01-15T12:00:22.9694819+08:00",
-            "Version": "1.7.7"
-        },
-        {
-            "Name": "OBSStudio-Portable",
-            "Info": "",
-            "Source": "apps",
-            "Updated": "2025-02-26T11:47:36.0389278+08:00",
-            "Version": "31.0.1"
-        },
-        {
-            "Name": "potplayer-Portable",
-            "Info": "",
-            "Source": "apps",
-            "Updated": "2024-08-09T21:37:41.9690863+08:00",
-            "Version": "240618"
-        },
-        {
-            "Name": "qqnt",
-            "Info": "",
-            "Source": "apps",
-            "Updated": "2025-03-29T15:50:50.209194+08:00",
-            "Version": "9.9.18.250318"
-        },
-        {
-            "Name": "ripgrep",
-            "Info": "",
-            "Source": "main",
-            "Updated": "2025-02-23T16:36:28.1130536+08:00",
-            "Version": "14.1.1"
-        },
-        {
-            "Name": "Rufus-Portable",
-            "Info": "",
-            "Source": "apps",
-            "Updated": "2024-12-10T10:53:18.807815+08:00",
-            "Version": "4.5"
-        },
-        {
-            "Name": "scrcpy",
-            "Info": "",
-            "Source": "main",
-            "Updated": "2024-12-24T16:30:00.5031055+08:00",
-            "Version": "3.1"
-        },
-        {
-            "Name": "Snipaste-Portable",
-            "Info": "",
-            "Source": "apps",
-            "Updated": "2023-11-10T17:15:19.2099441+08:00",
-            "Version": "2.8.8-Beta"
-        },
-        {
-            "Name": "spacesniffer",
-            "Info": "",
-            "Source": "extras",
-            "Updated": "2025-02-19T17:31:36.3013363+08:00",
-            "Version": "1.3.0.2"
-        },
-        {
-            "Name": "starship",
-            "Info": "",
-            "Source": "main",
-            "Updated": "2024-12-17T09:30:32.2176646+08:00",
-            "Version": "1.21.1"
-        },
-        {
-            "Name": "synergy",
-            "Info": "",
-            "Source": "apps",
-            "Updated": "2025-01-18T19:45:26.028702+08:00",
-            "Version": "1.11.1"
-        },
-        {
-            "Name": "tailscale",
-            "Info": "",
-            "Source": "extras",
-            "Updated": "2025-01-19T09:56:37.2520795+08:00",
-            "Version": "1.78.1"
-        },
-        {
-            "Name": "tightvnc",
-            "Info": "",
-            "Source": "extras",
-            "Updated": "2025-02-09T17:12:17.9162379+08:00",
-            "Version": "2.8.85"
-        },
-        {
-            "Name": "todesk",
-            "Info": "",
-            "Source": "apps",
-            "Updated": "2024-08-24T13:48:41.7938898+08:00",
-            "Version": "4.7.4.3"
-        },
-        {
-            "Name": "tssh",
-            "Info": "",
-            "Source": "main",
-            "Updated": "2024-08-09T21:56:25.8098138+08:00",
-            "Version": "0.1.21"
-        },
-        {
-            "Name": "Ventoy-Portable",
-            "Info": "",
-            "Source": "apps",
-            "Updated": "2024-12-10T10:40:45.438209+08:00",
-            "Version": "1.0.99"
-        },
-        {
-            "Name": "vitrite",
-            "Info": "",
-            "Source": "apps",
-            "Updated": "2025-01-13T13:32:23.2402648+08:00",
-            "Version": "1.1.1"
-        },
-        {
-            "Name": "vncviewer",
-            "Info": "",
-            "Source": "apps",
-            "Updated": "2024-12-26T10:22:19.8692042+08:00",
-            "Version": "7.13.1"
-        },
-        {
-            "Name": "vscode",
-            "Info": "",
-            "Source": "apps",
-            "Updated": "2025-03-30T12:41:28.6998895+08:00",
-            "Version": "1.98.2"
-        },
-        {
-            "Name": "wechat",
-            "Info": "",
-            "Source": "apps",
-            "Updated": "2025-03-15T15:19:55.0991576+08:00",
-            "Version": "3.9.12.51"
-        },
-        {
-            "Name": "wegame",
-            "Info": "",
-            "Source": "apps",
-            "Updated": "2025-03-29T15:48:31.3982159+08:00",
-            "Version": "5.9.1.1113"
-        },
-        {
-            "Name": "wget",
-            "Info": "",
-            "Source": "main",
-            "Updated": "2025-02-23T16:44:43.1945591+08:00",
-            "Version": "1.21.4"
-        },
-        {
-            "Name": "win-vind",
-            "Info": "",
-            "Source": "extras",
-            "Updated": "2025-02-22T11:40:34.8362584+08:00",
-            "Version": "5.13.2"
-        },
-        {
-            "Name": "WPS-CN",
-            "Info": "",
-            "Source": "apps",
-            "Updated": "2025-01-06T16:24:10.98551+08:00",
-            "Version": "12.1.0.19770"
-        },
-        {
-            "Name": "yasb",
-            "Info": "",
-            "Source": "extras",
-            "Updated": "2025-04-12T12:10:59.1192357+08:00",
-            "Version": "1.6.9"
-        },
-        {
-            "Name": "yazi",
-            "Info": "",
-            "Source": "main",
-            "Updated": "2025-01-15T11:54:50.9052874+08:00",
-            "Version": "0.4.2"
-        },
-        {
-            "Name": "zoxide",
-            "Info": "",
-            "Source": "main",
-            "Updated": "2025-04-13T22:05:05.2811111+08:00",
-            "Version": "0.9.7"
         }
     ]
 }
