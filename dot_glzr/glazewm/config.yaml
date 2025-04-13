@@ -174,7 +174,7 @@ window_rules:
   - commands: ["move --workspace 4"]
     match:
       # Move WeChat and WXWork windows to workspace 4
-  - window_process: { regex: "WeChat|WXWork" }
+      - window_process: { regex: "WeChat|WXWork" }
 
 binding_modes:
   # When enabled, the focused window can be resized via arrow keys or HJKL.
