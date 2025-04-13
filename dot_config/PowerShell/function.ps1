@@ -19,3 +19,8 @@ function helloWorld {
 	Write-Output " 获取所有窗口的id,进程名,窗口标题 ------ gwp"
 	Write-Output " "
 }
+
+# 获取所有窗口的id,进程名,窗口标题，以便配置glazewm的窗口规则
+function Get-ProcessNameAndMainWindowTitle {
+	Get-Process | Where-Object { $_.MainWindowTitle } | Select-Object Id, ProcessName, MainWindowTitle
+}
