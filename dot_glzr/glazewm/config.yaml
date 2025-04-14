@@ -162,6 +162,12 @@ window_rules:
 
       - window_process: { regex: "ScreenToGif" }
 
+      # 使记事本的窗口在打开的时候不平铺
+      - window_class: { regex: "Notepad" }
+
+      # 使VMware的窗口在打开的时候不平铺
+      - window_class: { regex: "VMUIFrame" }
+
   - commands: ["move --workspace 2"]
     match:
       - window_process: { regex: "Cursor|msedge" }
