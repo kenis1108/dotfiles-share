@@ -8,12 +8,6 @@
 uv venv
 ```
 
-进入 venv
-
-```powershell
-.venv\Scripts\activate
-```
-
 安装依赖
 
 ```powershell
