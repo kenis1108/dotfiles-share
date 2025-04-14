@@ -142,6 +142,9 @@ workspaces:
     keep_alive: true
 
   - name: "4"
+    display_name: "" # notion  feishu
+    keep_alive: true
+
   - name: "5"
   - name: "6"
   - name: "7"
@@ -202,11 +205,16 @@ window_rules:
 
   - commands: ["move --workspace 4"]
     match:
-      # Move mstsc (RDP) windows to workspace 4
+      # Move Feishu windows to workspace 4
+      - window_process: { regex: "Feishu" }
+
+  - commands: ["move --workspace 5"]
+    match:
+      # Move mstsc (RDP) windows to workspace 5
       - window_process: { regex: "mstsc" }
-      # Move Clash to workspace 4
+      # Move Clash to workspace 5
       - window_process: { regex: "clash-verge" }
-      # Move Foxmail to workspace 4
+      # Move Foxmail to workspace 5
       - window_process: { regex: "Foxmail" }
 
 binding_modes:
