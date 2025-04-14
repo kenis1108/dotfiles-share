@@ -121,8 +121,26 @@ window_behavior:
 
 workspaces:
   - name: "1"
+    # Optional override for the workspace label used in 3rd-party apps.
+    # Does not need to be unique.
+    display_name: "" # Code 
+    # display_name: "" # Vim 
+    # Optionally force the workspace on a specific monitor if it exists.
+    # 0 is your leftmost screen, 1 is the next one to the right, and so on.
+    bind_to_monitor: 0
+    # Optionally prevent workspace from being deactivated when empty.
+    keep_alive: true
+
   - name: "2"
+    display_name: "󰇩" # ms-edge 󰇩
+    bind_to_monitor: 0
+    keep_alive: true
+
   - name: "3"
+    display_name: "󰘑" # wechat 󰘑
+    bind_to_monitor: 0
+    keep_alive: true
+
   - name: "4"
   - name: "5"
   - name: "6"
@@ -157,24 +175,39 @@ window_rules:
       # 使微信小程序在打开的时候不平铺
       - window_process: { regex: "WeChatAppEx" }
 
+      # 使企业微信小程序在打开的时候不平铺
+      - window_class: { regex: "OpenAPIWebViewWindow" }
+
       # 使浏览器插件沙拉查词的独立查词窗口在打开的时候不平铺
       - window_title: { regex: "沙拉查词" }
 
       - window_process: { regex: "ScreenToGif" }
 
-  - commands: ["move --workspace 2"]
-    match:
-      - window_process: { regex: "Cursor|msedge" }
+      # 使记事本的窗口在打开的时候不平铺
+      - window_class: { regex: "Notepad" }
+
+      # 使VMware的窗口在打开的时候不平铺
+      - window_class: { regex: "VMUIFrame" }
+
+  # - commands: ["move --workspace 2"]
+  #   match:
+  #     - window_process: { regex: "msedge" }
 
   - commands: ["move --workspace 3"]
     match:
-      # Move mstsc (RDP) windows to workspace 3
-      - window_process: { regex: "mstsc" }
+      # Move WeChat and WXWork windows to workspace 3
+      - window_process: { regex: "WeChat|WXWork" }
+      # Move VMWare to workspace 3
+      - window_class: { regex: "VMUIFrame" }
 
   - commands: ["move --workspace 4"]
     match:
-      # Move WeChat and WXWork windows to workspace 4
-      - window_process: { regex: "WeChat|WXWork" }
+      # Move mstsc (RDP) windows to workspace 4
+      - window_process: { regex: "mstsc" }
+      # Move Clash to workspace 4
+      - window_process: { regex: "clash-verge" }
+      # Move Foxmail to workspace 4
+      - window_process: { regex: "Foxmail" }
 
 binding_modes:
   # When enabled, the focused window can be resized via arrow keys or HJKL.
