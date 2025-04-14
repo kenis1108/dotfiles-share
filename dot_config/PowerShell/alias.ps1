@@ -44,6 +44,19 @@ function gcp() {
   git push
 }
 
+# lazygit
+function lg {
+  param (
+    [string]$path = $PWD.Path
+  )
+  if (Test-Path -Path $path) {
+    Set-Location -LiteralPath $path
+    lazygit
+  } else {
+    Write-Host "路径不存在: $path"
+  }
+}
+
 # 获取窗口进程id，ProcessName，MainWindowTitle
 function gwp {
   Get-Process | Where-Object { $_.MainWindowTitle } | Select-Object Id, ProcessName, MainWindowTitle
