@@ -121,8 +121,26 @@ window_behavior:
 
 workspaces:
   - name: "1"
+    # Optional override for the workspace label used in 3rd-party apps.
+    # Does not need to be unique.
+    display_name: "" # Code 
+    # display_name: "" # Vim 
+    # Optionally force the workspace on a specific monitor if it exists.
+    # 0 is your leftmost screen, 1 is the next one to the right, and so on.
+    bind_to_monitor: 0
+    # Optionally prevent workspace from being deactivated when empty.
+    keep_alive: true
+
   - name: "2"
+    display_name: "󰇩" # ms-edge 󰇩
+    bind_to_monitor: 0
+    keep_alive: true
+
   - name: "3"
+    display_name: "󰘑" # wechat 󰘑
+    bind_to_monitor: 0
+    keep_alive: true
+
   - name: "4"
   - name: "5"
   - name: "6"
