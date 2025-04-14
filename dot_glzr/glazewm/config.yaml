@@ -175,6 +175,9 @@ window_rules:
       # 使微信小程序在打开的时候不平铺
       - window_process: { regex: "WeChatAppEx" }
 
+      # 使企业微信小程序在打开的时候不平铺
+      - window_class: { regex: "OpenAPIWebViewWindow" }
+
       # 使浏览器插件沙拉查词的独立查词窗口在打开的时候不平铺
       - window_title: { regex: "沙拉查词" }
 
