@@ -186,9 +186,9 @@ window_rules:
       # 使VMware的窗口在打开的时候不平铺
       - window_class: { regex: "VMUIFrame" }
 
-  - commands: ["move --workspace 2"]
-    match:
-      - window_process: { regex: "Cursor|msedge" }
+  # - commands: ["move --workspace 2"]
+  #   match:
+  #     - window_process: { regex: "msedge" }
 
   - commands: ["move --workspace 3"]
     match:
