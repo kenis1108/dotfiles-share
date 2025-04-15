@@ -30,6 +30,8 @@ class FileChangeHandler(PatternMatchingEventHandler):
         )
         self.watch_path = watch_path
         self.target_path = target_path
+        self.last_copy_time = 0  # 上次复制的时间戳
+        self.copy_cooldown = 0.5  # 复制冷却时间（秒）
 
     def should_ignore(self, path, names=None):
         """检查路径是否应该被忽略
@@ -45,51 +47,61 @@ class FileChangeHandler(PatternMatchingEventHandler):
         path_str = str(path)
         return '.git' in path_str.split(os.sep)
 
-    def copy_directory(self):
+    def copy_file(self, src_path, event_type):
+        """复制单个文件
+        Args:
+            src_path: 源文件路径
+            event_type: 事件类型（modified/created/moved）
+        """
+        current_time = time.time()
+        # 检查是否在冷却时间内
+        if current_time - self.last_copy_time < self.copy_cooldown:
+            return
+
         try:
+            # 计算目标文件路径
+            relative_path = Path(src_path).relative_to(self.watch_path)
+            target_file = self.target_path / relative_path
+            
             # 确保目标目录存在
-            self.target_path.mkdir(parents=True, exist_ok=True)
+            target_file.parent.mkdir(parents=True, exist_ok=True)
             
-            # 复制除 .git 外的所有文件和目录
-            for item in self.watch_path.iterdir():
-                if self.should_ignore(item):
-                    continue
-                    
-                target_item = self.target_path / item.name
-                
-                if item.is_file():
-                    # 如果是文件，直接复制
-                    shutil.copy2(str(item), str(target_item))
-                elif item.is_dir():
-                    # 如果是目录，递归复制
-                    if target_item.exists():
-                        shutil.rmtree(target_item)
-                    shutil.copytree(str(item), str(target_item), 
-                                  ignore=self.should_ignore)
+            if event_type == 'deleted':
+                # 如果是删除事件，删除目标文件
+                if target_file.exists():
+                    target_file.unlink()
+                    logger.info(f"文件已删除: {target_file}")
+            else:
+                # 复制文件
+                shutil.copy2(src_path, str(target_file))
+                logger.info(f"文件已复制: {target_file}")
             
-            logger.info(f"目录已复制到: {self.target_path}")
+            self.last_copy_time = current_time
         except Exception as e:
-            logger.error(f"复制目录时出错: {e}")
+            logger.error(f"处理文件时出错: {e}")
 
     def on_modified(self, event):
         if not self.should_ignore(Path(event.src_path)):
             logger.info(f"文件被修改: {event.src_path}")
-            self.copy_directory()
+            self.copy_file(event.src_path, 'modified')
 
     def on_created(self, event):
         if not self.should_ignore(Path(event.src_path)):
             logger.info(f"新文件创建: {event.src_path}")
-            self.copy_directory()
+            self.copy_file(event.src_path, 'created')
 
     def on_deleted(self, event):
         if not self.should_ignore(Path(event.src_path)):
             logger.info(f"文件被删除: {event.src_path}")
-            self.copy_directory()
+            self.copy_file(event.src_path, 'deleted')
 
     def on_moved(self, event):
         if not self.should_ignore(Path(event.src_path)):
             logger.info(f"文件移动: {event.src_path} -> {event.dest_path}")
-            self.copy_directory()
+            # 先删除源文件
+            self.copy_file(event.src_path, 'deleted')
+            # 再复制新文件
+            self.copy_file(event.dest_path, 'moved')
 
 def watch_directory(watch_path, target_path):
     event_handler = FileChangeHandler(watch_path, target_path)
@@ -116,8 +128,6 @@ def main():
             logger.info(f"变化将同步到: {target_path}")
             observer = watch_directory(watch_path, target_path)
             observers.append(observer)
-            # 初始复制一次
-            # FileChangeHandler(watch_path, target_path).copy_directory()
         
         logger.info("已排除所有 .git 目录的监听和复制")
         logger.info("所有目录监听已启动，按 Ctrl+C 停止")
