@@ -117,7 +117,7 @@ def main():
             observer = watch_directory(watch_path, target_path)
             observers.append(observer)
             # 初始复制一次
-            FileChangeHandler(watch_path, target_path).copy_directory()
+            # FileChangeHandler(watch_path, target_path).copy_directory()
         
         logger.info("已排除所有 .git 目录的监听和复制")
         logger.info("所有目录监听已启动，按 Ctrl+C 停止")
