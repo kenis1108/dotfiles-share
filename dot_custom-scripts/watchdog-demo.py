@@ -19,8 +19,8 @@ class FileChangeHandler(PatternMatchingEventHandler):
     def __init__(self, watch_path, target_path):
         # 设置要忽略的模式
         patterns = ["*"]  # 监听所有文件
-        ignore_patterns = [".git/*", ".git/**/*"]  # 忽略 .git 目录及其所有内容
-        ignore_directories = True  # 忽略目录事件
+        ignore_patterns = [".git/*", ".git/**/*", "**/.git/*", "**/.git/**/*"]  # 忽略所有 .git 目录及其内容
+        ignore_directories = False  # 允许监听目录事件
         case_sensitive = True
         super().__init__(
             patterns=patterns,
@@ -31,6 +31,20 @@ class FileChangeHandler(PatternMatchingEventHandler):
         self.watch_path = watch_path
         self.target_path = target_path
 
+    def should_ignore(self, path, names=None):
+        """检查路径是否应该被忽略
+        Args:
+            path: 要检查的路径
+            names: 可选参数，用于 shutil.copytree 的 ignore 函数
+        """
+        if names is not None:
+            # 用于 shutil.copytree 的 ignore 函数
+            return [name for name in names if '.git' in name]
+        
+        # 用于普通路径检查
+        path_str = str(path)
+        return '.git' in path_str.split(os.sep)
+
     def copy_directory(self):
         try:
             # 确保目标目录存在
@@ -38,7 +52,7 @@ class FileChangeHandler(PatternMatchingEventHandler):
             
             # 复制除 .git 外的所有文件和目录
             for item in self.watch_path.iterdir():
-                if item.name == '.git':
+                if self.should_ignore(item):
                     continue
                     
                 target_item = self.target_path / item.name
@@ -51,29 +65,29 @@ class FileChangeHandler(PatternMatchingEventHandler):
                     if target_item.exists():
                         shutil.rmtree(target_item)
                     shutil.copytree(str(item), str(target_item), 
-                                  ignore=shutil.ignore_patterns('.git', '.git/*', '.git/**/*'))
+                                  ignore=self.should_ignore)
             
             logger.info(f"目录已复制到: {self.target_path}")
         except Exception as e:
             logger.error(f"复制目录时出错: {e}")
 
     def on_modified(self, event):
-        if not event.is_directory:
+        if not self.should_ignore(Path(event.src_path)):
             logger.info(f"文件被修改: {event.src_path}")
             self.copy_directory()
 
     def on_created(self, event):
-        if not event.is_directory:
+        if not self.should_ignore(Path(event.src_path)):
             logger.info(f"新文件创建: {event.src_path}")
             self.copy_directory()
 
     def on_deleted(self, event):
-        if not event.is_directory:
+        if not self.should_ignore(Path(event.src_path)):
             logger.info(f"文件被删除: {event.src_path}")
             self.copy_directory()
 
     def on_moved(self, event):
-        if not event.is_directory:
+        if not self.should_ignore(Path(event.src_path)):
             logger.info(f"文件移动: {event.src_path} -> {event.dest_path}")
             self.copy_directory()
 
@@ -105,7 +119,7 @@ def main():
             # 初始复制一次
             FileChangeHandler(watch_path, target_path).copy_directory()
         
-        logger.info("已排除 .git 目录的监听和复制")
+        logger.info("已排除所有 .git 目录的监听和复制")
         logger.info("所有目录监听已启动，按 Ctrl+C 停止")
         
         while True:
