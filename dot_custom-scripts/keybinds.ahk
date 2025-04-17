@@ -9,3 +9,8 @@
 {
     Send "{Alt down}{F4}{Alt up}"
 }
+
+CapsLock & Space::
+{
+    Send "{Enter}"
+}
