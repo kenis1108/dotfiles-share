@@ -9,3 +9,18 @@
 {
     Send "{Alt down}{F4}{Alt up}"
 }
+
+CapsLock & Space::
+{
+    Send "{Enter}"
+}
+
+CapsLock & q::
+{
+  Send "{Del}"
+}
+
+CapsLock & e::
+{
+  Send "{Backspace}"
+}

@@ -109,10 +109,10 @@ $env:EDITOR = "nvim"
 # $newPath = "$HOME`\.local`\bin;$oldPath"
 # [System.Environment]::SetEnvironmentVariable("Path", $newPath, "User")
 
-# 将Git自带的工具添加到环境变量中
 # 获取当前用户PATH值
 $currentPath = [Environment]::GetEnvironmentVariable("PATH", "User")
 
+# 将Git自带的工具添加到环境变量中
 # Git的bin目录路径（根据实际安装位置调整）
 $gitUsrBinPath = "$($(Get-Item $(Get-Command scoop.ps1).Path).Directory.Parent.FullName)\apps\git\current\usr\bin"
 
@@ -123,6 +123,16 @@ if ($currentPath -notlike "*$gitUsrBinPath*") {
     [Environment]::SetEnvironmentVariable("PATH", $newPath, "User")
 }
 
+# 将autohotkey安装目录添加到环境变量中
+# Autohotkey的安装目录路径（根据实际安装位置调整）
+$ahkPath = "$($(Get-Item $(Get-Command scoop.ps1).Path).Directory.Parent.FullName)\apps\autohotkey-portable\current"
+
+# 检查是否已包含该路径
+if ($currentPath -notlike "*$ahkPath*") {
+    # 添加Autohotkey目录到PATH
+    $newPath = $currentPath + ";" + $ahkPath
+    [Environment]::SetEnvironmentVariable("PATH", $newPath, "User")
+}
 
 . {{ .chezmoi.homeDir }}/.config/PowerShell/alias.ps1
 . {{ .chezmoi.homeDir }}/.config/PowerShell/prompt.ps1
