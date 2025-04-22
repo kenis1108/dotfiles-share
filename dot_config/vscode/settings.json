@@ -35,8 +35,8 @@
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
   },
-  "vscode-neovim.ctrlKeysForInsertMode": ["c"], // 让ctrl键在Insert Mode下触发vscode的键绑定
-  "vscode-neovim.ctrlKeysForNormalMode": [], // 让ctrl键在Normal Mode下触发vscode的键绑定
+  "vscode-neovim.ctrlKeysForInsertMode": [], // 让ctrl键在Insert Mode下不要穿透到neovim,保持由vscode处理
+  "vscode-neovim.ctrlKeysForNormalMode": [], // 让ctrl键在Normal Mode下不要穿透到neovim,保持由vscode处理
   // Wangguixuan.var-translate-en
   "var-translate-en.baiduSecretKey": "xxxxxxxxxxxx",
   "var-translate-en.baiduAppid": "xxxxxxxxxxxx",
