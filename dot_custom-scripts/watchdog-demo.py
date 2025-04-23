@@ -15,6 +15,19 @@ logger.add(
     level="INFO"
 )
 
+def execute_post_sync_command(command, directory):
+    """执行文件同步后的系统命令
+    Args:
+        command: 要执行的系统命令
+        directory: 命令执行的工作目录
+    """
+    try:
+        logger.info(f"在目录 {directory} 中执行命令: {command}")
+        os.chdir(directory)
+        os.system(command)
+    except Exception as e:
+        logger.error(f"执行命令时出错: {e}")
+
 class FileChangeHandler(PatternMatchingEventHandler):
     def __init__(self, watch_path, target_path):
         # 设置要忽略的模式
@@ -77,6 +90,10 @@ class FileChangeHandler(PatternMatchingEventHandler):
                 logger.info(f"文件已复制: {target_file}")
             
             self.last_copy_time = current_time
+
+            # 在文件同步完成后执行命令（仅对特定目录）
+            if str(self.watch_path) == "E:/shared/source":
+                execute_post_sync_command("npm run lint", str(self.watch_path))
         except Exception as e:
             logger.error(f"处理文件时出错: {e}")
 
