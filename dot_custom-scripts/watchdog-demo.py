@@ -92,8 +92,8 @@ class FileChangeHandler(PatternMatchingEventHandler):
             self.last_copy_time = current_time
 
             # 在文件同步完成后执行命令（仅对特定目录）
-            if str(self.watch_path) == "E:/shared/source":
-                execute_post_sync_command("npm run lint", str(self.watch_path))
+            if self.watch_path == Path("E:/shared/source"):
+                execute_post_sync_command("npm run lint", Path("Z:/hjh/source"))
         except Exception as e:
             logger.error(f"处理文件时出错: {e}")
 
