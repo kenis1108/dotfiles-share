@@ -15,7 +15,7 @@
   "files.autoSave": "onFocusChange",
   "editor.tabSize": 2,
   "editor.detectIndentation": false,
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "editor.lineNumbers": "relative", // 相对行号
   "editor.cursorSmoothCaretAnimation": "on", // 启用平滑的光标移动动画
   "workbench.colorCustomizations": {
