@@ -4,5 +4,6 @@ if vim.g.vscode then
 else
   -- ordinary Neovim
   require("config.options")
+  require("config.keybinds")
   require("lazynvim")
 end
