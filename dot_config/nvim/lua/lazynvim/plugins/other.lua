@@ -39,5 +39,18 @@ return {
     config = true
     -- use opts = {} for passing setup options
     -- this is equivalent to setup({}) function
-  }
+  },
+
+  -- Automatically add closing tags for HTML and JSX
+  {
+    "windwp/nvim-ts-autotag",
+    event = "InsertEnter",
+    opts = {},
+  },
+
+  -- show keybindings for possible keymaps with a popup
+  {
+    'folke/which-key.nvim',
+    event = "VeryLazy",
+  },
 }
