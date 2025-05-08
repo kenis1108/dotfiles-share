@@ -1,0 +1,40 @@
+#---------------------------------------
+# alias
+#---------------------------------------
+# Replace ls with eza
+{{- if ne .chezmoi.os "android" }}
+alias ls='eza -al --color=always --group-directories-first --icons' # preferred listing
+alias la='eza -a --color=always --group-directories-first --icons'  # all files and dirs
+alias ll='eza -l --color=always --group-directories-first --icons'  # long format
+alias lt='eza -aT --color=always --group-directories-first --icons' # tree listing
+alias l.='eza -ald --color=always --group-directories-first --icons .*' # show only dotfiles
+{{- end }}
+
+# chezmoi
+alias cc='cd $(chezmoi source-path)'
+alias ca='chezmoi apply --force'
+alias ce='chezmoi edit --apply'
+
+# grep
+alias grep='grep --color=auto'
+
+# git
+function gcp() {
+  git add .
+  git commit -m "$1"
+  git push
+}
+alias gp='git pull'
+
+# lazygit
+alias lg='lazygit'
+
+# 中证VPN
+alias dhip="sudo dhclient vpn_test && sh /home/kk/vpn/iproute.sh"
+alias startvpn="cd && cd vpn/vpnclient && sudo ./vpnclient start && sudo ./vpncmd"
+# 山西证券子公司VPN
+alias motion="/opt/MotionPro/MotionPro.sh"
+# 鸽子内网穿透
+alias startnpc="cd ~/Downloads/linux_amd64_client && ./npc -server=f1.fgct.cc:8024 -vkey=159abe614d"
+# 使ranger退出时停留在选中的目录中
+alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
