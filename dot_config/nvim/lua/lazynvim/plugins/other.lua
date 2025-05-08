@@ -2,50 +2,11 @@ return {
   -- themes
   {
     "folke/tokyonight.nvim",
-    priority = 1000, -- Make sure to load this before all the other start plugins.
+    priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require('tokyonight').setup {
-        styles = {
-          comments = { italic = false }, -- Disable italics in comments
-        },
-      }
-
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      -- load the colorscheme here
+      vim.cmd([[colorscheme tokyonight]])
     end,
-  },
-
-  -- Highlight todo, notes, etc in comments
-  {
-    "folke/todo-comments.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {}
-  },
-
-  -- Add indentation guides even on blank lines
-  { 
-    'lukas-reineke/indent-blankline.nvim',
-    main = 'ibl',
-    opts = {},
-  },
-
-  -- autopairs
-  {
-    'windwp/nvim-autopairs',
-    event = "InsertEnter",
-    config = true
-    -- use opts = {} for passing setup options
-    -- this is equivalent to setup({}) function
-  },
-
-  -- Automatically add closing tags for HTML and JSX
-  {
-    "windwp/nvim-ts-autotag",
-    event = "InsertEnter",
-    opts = {},
   },
 
   -- show keybindings for possible keymaps with a popup
@@ -53,4 +14,56 @@ return {
     'folke/which-key.nvim',
     event = "VeryLazy",
   },
+
+  -- statusline
+  {
+    'nvim-lualine/lualine.nvim',
+    event = "VeryLazy",
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require("lualine").setup()
+    end,
+  },
+
+  -- syntax highlighting. Highlight, edit, and navigate code
+  { 
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function () 
+      local configs = require("nvim-treesitter.configs")
+  
+      configs.setup({
+        ensure_installed = { 
+          "bash",
+          "css",      
+          "diff",
+          "html",
+          "javascript",
+          "jsdoc",
+          "json",
+          "jsonc",
+          "lua",
+          "luadoc",
+          "markdown",
+          "markdown_inline",
+          "nix",
+          "powershell",
+          "python",
+          "scss",
+          "toml",
+          "tsx",
+          "typescript",
+          "vim",
+          "vimdoc",
+          "vue",
+          "xml",
+          "yaml",
+        },
+        auto_install = true,
+        sync_install = false,
+        highlight = { enable = true },
+        indent = { enable = true },  
+      })
+    end
+  }
 }
