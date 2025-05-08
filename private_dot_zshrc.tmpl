@@ -1,0 +1,75 @@
+export ZSH="$HOME/.config/zsh"
+export BROWSER=/usr/bin/microsoft-edge-stable
+export EDITOR=nvim
+export PATH="$HOME/.local/bin:$PATH"
+
+{{- if ne .chezmoi.os "android" }}
+# 加载arch配置
+# source $ZSH/zshrc_arch
+# 加载garuda配置
+# source $ZSH/zshrc_garuda
+{{- else }}
+# 加载Termux配置
+# source $ZSH/zshrc_termux
+{{- end }}
+
+source $ZSH/plugins.zsh
+source $ZSH/prompt.zsh
+source $ZSH/completions.zsh
+source $ZSH/keybindings.zsh
+source $ZSH/alias.zsh
+
+#--------------------
+# history
+#--------------------
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
+
+#--------------------
+# Applications
+#--------------------
+## yazi退出时自动切换到退出时的目录
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	EDITOR=nvim yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
+## boot up x-cmd.
+[ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X" 
+
+## direnv
+if command -v direnv &> /dev/null; then
+  eval "$(direnv hook zsh)"
+fi
+
+# fnm
+FNM_PATH="$HOME/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$HOME/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+fi
+
+# uv
+if command -v uv &> /dev/null; then
+  eval "$(uv generate-shell-completion zsh)"
+  eval "$(uvx --generate-shell-completion zsh)"
+fi
+
+# zoxide
+if command -v zoxide &> /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
+
+# 判断是否是 WSL 环境
+if [[ -n "$WSL_DISTRO_NAME" ]]; then
+  echo "当前运行在 WSL 环境中，发行版名称: $WSL_DISTRO_NAME"
+  # 如果是 WSL 环境，执行 fcitx5 命令
+  fcitx5 --disable=wayland -d --verbose '*'=0
+else
+  echo "当前不是 WSL 环境。"
+fi
