@@ -40,8 +40,8 @@ local function require_dir(dir)
       local ok, err = pcall(require, modname)
       if not ok then
         print("❌ 加载失败:", modname, "错误:", err)
-      else
-        print("✅ 成功加载:", modname)
+      -- else
+        -- print("✅ 成功加载:", modname)
       end
     end
   end
