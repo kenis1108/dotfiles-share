@@ -25,7 +25,11 @@ function Get-ProcessNameAndMainWindowTitle {
 	Get-Process | Where-Object { $_.MainWindowTitle } | Select-Object Id, ProcessName, MainWindowTitle
 }
 
-# 为文件创建符号链接，用于在Windows下复用和统一Linux的各种配置文件路径
+# 为文件创建符号链接，用于在Windows下复用和统一Linux的各种配置文件路径，需要以管理员身份运行这个函数
+# 例如：
+# $target = "$env:USERPROFILE\AppData\Roaming\yazi\config\yazi.toml"
+# $source = "$env:USERPROFILE\.config\yazi\yazi.toml"
+# gsudo Create-SymbolicLinkIfNeeded -TargetPath $target -SourcePath $source
 function Create-SymbolicLinkIfNeeded {
     param (
         [Parameter(Mandatory = $true)]
