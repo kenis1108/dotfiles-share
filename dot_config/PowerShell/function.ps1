@@ -24,3 +24,28 @@ function helloWorld {
 function Get-ProcessNameAndMainWindowTitle {
 	Get-Process | Where-Object { $_.MainWindowTitle } | Select-Object Id, ProcessName, MainWindowTitle
 }
+
+# 为文件创建符号链接，用于在Windows下复用和统一Linux的各种配置文件路径
+function Create-SymbolicLinkIfNeeded {
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]$TargetPath,
+        [Parameter(Mandatory = $true)]
+        [string]$SourcePath
+    )
+
+    # 检查目标路径是否存在
+    if (Test-Path -Path $TargetPath) {
+        # 如果存在，删除它
+        Remove-Item -Path $TargetPath -Force
+    }else{
+        # 如果不存在，创建父目录
+        $parentDir = Split-Path -Path $TargetPath -Parent
+        if (-not (Test-Path -Path $parentDir)) {
+            New-Item -ItemType Directory -Path $parentDir -Force | Out-Null
+        }
+    }
+
+    # 创建符号链接
+    New-Item -ItemType SymbolicLink -Path $TargetPath -Target $SourcePath
+}
