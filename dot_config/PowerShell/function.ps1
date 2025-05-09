@@ -24,3 +24,69 @@ function helloWorld {
 function Get-ProcessNameAndMainWindowTitle {
 	Get-Process | Where-Object { $_.MainWindowTitle } | Select-Object Id, ProcessName, MainWindowTitle
 }
+
+# 为文件创建符号链接，用于在Windows下复用和统一Linux的各种配置文件路径，需要以管理员身份运行这个函数
+# ------------------------------
+# 例如：创建yazi的配置文件符号链接
+# $target = "$env:USERPROFILE\AppData\Roaming\yazi\config\yazi.toml"
+# $source = "$env:USERPROFILE\.config\yazi\yazi.toml"
+# gsudo Create-SymbolicLinkIfNeeded -TargetPath $target -SourcePath $source
+# --------------------------------
+# 创建VSCode的配置文件符号链接
+# $target = "$($(Get-Item $(Get-Command scoop.ps1).Path).Directory.Parent.FullName)\persist\vscode\data\user-data\User\settings.json"
+# $source = "$env:USERPROFILE\.config\vscode\settings.json"
+# gsudo Create-SymbolicLinkIfNeeded -TargetPath $target -SourcePath $source
+# $target = "$($(Get-Item $(Get-Command scoop.ps1).Path).Directory.Parent.FullName)\persist\vscode\data\user-data\User\keybindings.json"
+# $source = "$env:USERPROFILE\.config\vscode\keybindings.json"
+# gsudo Create-SymbolicLinkIfNeeded -TargetPath $target -SourcePath $source
+function Create-SymbolicLinkIfNeeded {
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]$TargetPath,
+        [Parameter(Mandatory = $true)]
+        [string]$SourcePath
+    )
+
+    # 检查目标路径是否存在
+    if (Test-Path -Path $TargetPath) {
+        # 如果存在，删除它
+        Remove-Item -Path $TargetPath -Force
+    }else{
+        # 如果不存在，创建父目录
+        $parentDir = Split-Path -Path $TargetPath -Parent
+        if (-not (Test-Path -Path $parentDir)) {
+            New-Item -ItemType Directory -Path $parentDir -Force | Out-Null
+        }
+    }
+
+    # 创建符号链接
+    New-Item -ItemType SymbolicLink -Path $TargetPath -Target $SourcePath
+}
+
+# 导出Scoop安装的应用程序列表到JSON文件
+function Export-ScoopApps {
+    scoop export > ~/scoop-app.json
+    chezmoi add ~/scoop-app.json
+}
+
+# 从JSON文件导入Scoop安装的应用程序
+function Import-ScoopApps {
+    scoop import ~/scoop-app.json
+}
+
+# 启动/停止随处解压安装的sshd服务，需要先cd到sshd.exe所在目录
+function Set-SSHD {
+    param (
+        [Parameter(Mandatory = $true)]
+        [ValidateSet("start", "stop")]
+        [string]$Action
+    )
+
+    if ($Action -eq "start") {
+        Start-Process powershell.exe -ArgumentList "-WindowStyle Hidden", "-Command", "./sshd.exe -f ./sshd_config"
+    } elseif ($Action -eq "stop") {
+        Get-Process sshd | Stop-Process -Force
+    } else {
+        Write-Host "Invalid action. Use 'start' or 'stop'."
+    }
+}

@@ -1,1 +1,0 @@
-Get-Process sshd | Stop-Process -Force
