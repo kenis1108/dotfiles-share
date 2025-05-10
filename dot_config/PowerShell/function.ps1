@@ -152,7 +152,8 @@ Set-Alias swl Set-WinLKey
 
 # 为文件创建符号链接，用于在Windows下复用和统一Linux的各种配置文件路径，需要以管理员身份运行这个函数
 # ------------------------------
-# 例如：创建yazi的配置文件符号链接
+# 例如：
+# 创建yazi的配置文件符号链接
 # $target = "$env:USERPROFILE\AppData\Roaming\yazi\config\yazi.toml"
 # $source = "$env:USERPROFILE\.config\yazi\yazi.toml"
 # gsudo Create-SymbolicLinkIfNeeded -TargetPath $target -SourcePath $source
@@ -163,6 +164,11 @@ Set-Alias swl Set-WinLKey
 # gsudo Create-SymbolicLinkIfNeeded -TargetPath $target -SourcePath $source
 # $target = "$($(Get-Item $(Get-Command scoop.ps1).Path).Directory.Parent.FullName)\persist\vscode\data\user-data\User\keybindings.json"
 # $source = "$env:USERPROFILE\.config\vscode\keybindings.json"
+# gsudo Create-SymbolicLinkIfNeeded -TargetPath $target -SourcePath $source
+# --------------------------------
+# 创建alacritty的配置文件符号链接
+# $target = "$env:USERPROFILE\AppData\Roaming\alacritty\alacritty.yml"
+# $source = "$env:USERPROFILE\.config\alacritty\alacritty.yml"
 # gsudo Create-SymbolicLinkIfNeeded -TargetPath $target -SourcePath $source
 function Create-SymbolicLinkIfNeeded {
     param (
