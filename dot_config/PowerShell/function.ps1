@@ -140,7 +140,11 @@ function Set-WinLKey {
             New-Item -Path $regPath -Force | Out-Null
         }
         Set-ItemProperty -Path $regPath -Name $regValueName -Value $value -Type DWord -Force
-        Write-Output "Win+L快捷键已$($value ? '禁用' : '启用')"
+        if ($value -eq 1) {
+            Write-Output "Win+L快捷键已禁用"
+        } else {
+            Write-Output "Win+L快捷键已启用"
+        }
     }
     catch {
         Write-Error "修改失败: $_"
@@ -196,13 +200,40 @@ function Create-SymbolicLinkIfNeeded {
 
 # 导出Scoop安装的应用程序列表到JSON文件
 function Export-ScoopApps {
-    scoop export > ~/scoop-app.json
-    chezmoi add ~/scoop-app.json
+    $timestamp = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
+    $hostname = $env:COMPUTERNAME
+    $filePath = "$HOME\scoop\scoop-app_${hostname}_$timestamp.json"
+    scoop export > $filePath
+    chezmoi add $filePath
+    Write-Output "Scoop 应用列表已导出到: $filePath"
 }
 
 # 从JSON文件导入Scoop安装的应用程序
 function Import-ScoopApps {
-    scoop import ~/scoop-app.json
+    # 定义存储 Scoop 导出文件的目录
+    $scoopDir = "$HOME\scoop"
+    $hostname = $env:COMPUTERNAME
+
+    # 检查目录是否存在
+    if (-not (Test-Path -Path $scoopDir)) {
+        Write-Error "目录 $scoopDir 不存在，无法导入文件。"
+        return
+    }
+
+    # 获取当前主机名相关的最新导出文件
+    $latestFile = Get-ChildItem -Path $scoopDir -Filter "scoop-app_${hostname}_*.json" |
+                  Sort-Object LastWriteTime -Descending |
+                  Select-Object -First 1
+
+    # 检查是否找到文件
+    if (-not $latestFile) {
+        Write-Error "未找到与主机名 $hostname 相关的 Scoop 导出文件。"
+        return
+    }
+
+    # 导入最新的文件
+    scoop import $latestFile.FullName
+    Write-Output "已成功导入文件: $($latestFile.FullName)"
 }
 
 # 启动/停止随处解压安装的sshd服务，需要先cd到sshd.exe所在目录
@@ -219,5 +250,26 @@ function Set-SSHD {
         Get-Process sshd | Stop-Process -Force
     } else {
         Write-Host "Invalid action. Use 'start' or 'stop'."
+    }
+}
+
+# 启动不同配置的nvim，参数是在$env:XDG_CONFIG_HOME目录下的配置文件夹名
+# 例如：Start-Nvim-WithConfig -Config "nvim_lv"
+function Start-Nvim-WithConfig {
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]$Config
+    )
+
+    # 定义配置文件夹路径
+    $configPath = "$env:XDG_CONFIG_HOME\$Config"
+
+    # 检查文件夹是否存在
+    if (Test-Path -Path $configPath) {
+        $env:NVIM_APPNAME = $Config
+        Write-Host "已设置 NVIM_APPNAME=$Config"
+        nvim
+    } else {
+        Write-Error "配置文件夹 '$configPath' 不存在，请检查参数是否正确。"
     }
 }

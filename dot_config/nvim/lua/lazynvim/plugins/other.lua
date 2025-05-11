@@ -1,69 +1,51 @@
 return {
-  -- themes
+  -- auto pairs
   {
-    "folke/tokyonight.nvim",
-    priority = 1000, -- make sure to load this before all the other start plugins
+    "echasnovski/mini.pairs",
     config = function()
-      -- load the colorscheme here
-      vim.cmd([[colorscheme tokyonight]])
+      require("mini.pairs").setup()
     end,
   },
 
-  -- show keybindings for possible keymaps with a popup
-  {
-    'folke/which-key.nvim',
-    event = "VeryLazy",
-  },
+  -- filemanager
+  { "echasnovski/mini.files", version = "*" },
 
-  -- statusline
+  -- error-len
   {
-    'nvim-lualine/lualine.nvim',
-    event = "VeryLazy",
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function()
-      require("lualine").setup()
-    end,
+    "folke/trouble.nvim",
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    cmd = "Trouble",
+    keys = {
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xX",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
+      },
+      {
+        "<leader>cs",
+        "<cmd>Trouble symbols toggle focus=false<cr>",
+        desc = "Symbols (Trouble)",
+      },
+      {
+        "<leader>cl",
+        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+        desc = "LSP Definitions / references / ... (Trouble)",
+      },
+      {
+        "<leader>xL",
+        "<cmd>Trouble loclist toggle<cr>",
+        desc = "Location List (Trouble)",
+      },
+      {
+        "<leader>xQ",
+        "<cmd>Trouble qflist toggle<cr>",
+        desc = "Quickfix List (Trouble)",
+      },
+    },
   },
-
-  -- syntax highlighting. Highlight, edit, and navigate code
-  -- { 
-  --   "nvim-treesitter/nvim-treesitter",
-  --   build = ":TSUpdate",
-  --   config = function () 
-  --     local configs = require("nvim-treesitter.configs")
-  
-  --     configs.setup({
-  --       ensure_installed = { 
-  --         "bash",
-  --         "css",      
-  --         "diff",
-  --         "html",
-  --         "javascript",
-  --         "jsdoc",
-  --         "json",
-  --         "jsonc",
-  --         "lua",
-  --         "luadoc",
-  --         "markdown",
-  --         "markdown_inline",
-  --         "nix",
-  --         "powershell",
-  --         "python",
-  --         "scss",
-  --         "toml",
-  --         "tsx",
-  --         "typescript",
-  --         "vim",
-  --         "vimdoc",
-  --         "vue",
-  --         "xml",
-  --         "yaml",
-  --       },
-  --       auto_install = true,
-  --       sync_install = false,
-  --       highlight = { enable = true },
-  --       indent = { enable = true },  
-  --     })
-  --   end
-  -- }
 }

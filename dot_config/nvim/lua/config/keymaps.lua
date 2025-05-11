@@ -32,17 +32,22 @@ map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", {
 -- save file
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 
+-- quit
+map("n", "<C-q>", "<cmd>qa<cr>", { desc = "Quit All" })
+
 -- better indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
+-- windows
+map("n", "<leader>w-", "<C-W>s", { desc = "Split Window Below", remap = true })
+map("n", "<leader>w|", "<C-W>v", { desc = "Split Window Right", remap = true })
+map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
+
 -- lazy
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
--- quit
-map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
+-- mason
+map("n", "<leader>m", "<cmd>Mason<cr>", {desc = "Mason"})
 
--- windows
-map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
-map("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
-map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
+
