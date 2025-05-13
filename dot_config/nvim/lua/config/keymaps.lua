@@ -1,5 +1,5 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 local map = vim.keymap.set
 
@@ -40,14 +40,11 @@ map("v", "<", "<gv")
 map("v", ">", ">gv")
 
 -- windows
-map("n", "<leader>w-", "<C-W>s", { desc = "Split Window Below", remap = true })
-map("n", "<leader>w|", "<C-W>v", { desc = "Split Window Right", remap = true })
-map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
+map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
+map("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
 
 -- lazy
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
 -- mason
-map("n", "<leader>m", "<cmd>Mason<cr>", {desc = "Mason"})
-
-
+map("n", "<leader>m", "<cmd>Mason<cr>", { desc = "Mason" })

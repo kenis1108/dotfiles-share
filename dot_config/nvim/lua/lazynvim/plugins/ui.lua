@@ -23,24 +23,40 @@ return {
   -- show keybindings for possible keymaps with a popup
   {
     "folke/which-key.nvim",
-    event = "VeryLazy", -- Sets the loading event to 'VimEnter'
+    event = "VeryLazy",
     opts = {
-      -- Document existing key chains
       spec = {
         { "<leader>a", group = "[A]I" },
-        { "<leader>s", group = "[S]earch" },
-        { "<leader>w", group = "[W]indow" },
         {
-          "<leader>d",
-          group = "[D]ropbar",
-          -- condition = function()
-          --   local ft = vim.bo.filetype
-          --   local excluded = { "netrw", "NvimTree", "alpha" } -- 排除的文件类型列表
-          --   return not vim.tbl_contains(excluded, ft)
-          -- end,
+          "<leader>b",
+          group = "buffer",
+          expand = function()
+            return require("which-key.extras").expand.buf()
+          end,
         },
+        { "<leader>d", group = "[D]ropbar" },
+        { "g", group = "goto" },
+        { "gs", group = "surround" },
+        { "<leader>s", group = "[S]earch" },
+        {
+          "<leader>w",
+          group = "windows",
+          proxy = "<c-w>",
+          expand = function()
+            return require("which-key.extras").expand.win()
+          end,
+        },
+        { "z", group = "fold" },
+        {
+          "<leader>?",
+          function()
+            require("which-key").show({ global = false })
+          end,
+          desc = "Buffer Local Keymaps (which-key)",
+        }
       },
     },
+
   },
 
   -- statusline
@@ -51,13 +67,6 @@ return {
       require("lualine").setup({})
     end,
   },
-  -- {
-  --   "rebelot/heirline.nvim",
-  --   event = "VeryLazy",
-  --   config = function(_, opts)
-  --     opts.winbar = nil
-  --   end,
-  -- },
 
   -- winbar中显示面包屑下拉菜单
   -- A polished, IDE-like, highly-customizable winbar for Neovim
