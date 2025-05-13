@@ -63,9 +63,7 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
-    config = function()
-      require("lualine").setup({})
-    end,
+    opts = {},
   },
 
   -- winbar中显示面包屑下拉菜单
