@@ -16,7 +16,7 @@ return {
     "echasnovski/mini.files",
     config = function()
       require("mini.files").setup()
-      vim.keymap.set("n", "<Leader>e", MiniFiles.open, { desc = "[E]xplorer (Open filemanager)" })
+      vim.keymap.set("n", "<Leader>e", MiniFiles.open, { desc = "[E]xplorer (mini.files)" })
     end,
   },
 
@@ -26,37 +26,36 @@ return {
     event = "VeryLazy",
     opts = {
       spec = {
+        { "g", group = "[G]oto" },
+        { "s", group = "[S]urround" },
+        { "z", group = "Fold" },
         { "<leader>a", group = "[A]I" },
         {
           "<leader>b",
-          group = "buffer",
+          group = "[B]uffer",
           expand = function()
             return require("which-key.extras").expand.buf()
           end,
         },
         { "<leader>d", group = "[D]ropbar" },
-        { "g", group = "goto" },
-        { "gs", group = "surround" },
         { "<leader>s", group = "[S]earch" },
         {
           "<leader>w",
-          group = "windows",
+          group = "[W]indows",
           proxy = "<c-w>",
           expand = function()
             return require("which-key.extras").expand.win()
           end,
         },
-        { "z", group = "fold" },
         {
           "<leader>?",
           function()
-            require("which-key").show({ global = false })
+            require("which-key").show()
           end,
-          desc = "Buffer Local Keymaps (which-key)",
-        }
+          desc = "Show Keymaps (which-key)",
+        },
       },
     },
-
   },
 
   -- statusline
