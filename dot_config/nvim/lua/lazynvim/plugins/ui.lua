@@ -8,23 +8,51 @@ return {
     end,
   },
 
+  -- icon
+  { "echasnovski/mini.icons" },
+
+  -- filemanager
+  {
+    "echasnovski/mini.files",
+    config = function()
+      require("mini.files").setup()
+      vim.keymap.set("n", "<Leader>e", MiniFiles.open, { desc = "[E]xplorer (mini.files)" })
+    end,
+  },
+
   -- show keybindings for possible keymaps with a popup
   {
     "folke/which-key.nvim",
-    event = "VeryLazy", -- Sets the loading event to 'VimEnter'
+    event = "VeryLazy",
     opts = {
-      -- Document existing key chains
       spec = {
-        { "<leader>s", group = "[S]earch" },
-        { "<leader>w", group = "[W]indow" },
+        { "g", group = "[G]oto" },
+        { "s", group = "[S]urround" },
+        { "z", group = "Fold" },
+        { "<leader>a", group = "[A]I" },
         {
-          "<leader>d",
-          group = "[D]ropbar",
-          -- condition = function()
-          --   local ft = vim.bo.filetype
-          --   local excluded = { "netrw", "NvimTree", "alpha" } -- 排除的文件类型列表
-          --   return not vim.tbl_contains(excluded, ft)
-          -- end,
+          "<leader>b",
+          group = "[B]uffer",
+          expand = function()
+            return require("which-key.extras").expand.buf()
+          end,
+        },
+        { "<leader>d", group = "[D]ropbar" },
+        { "<leader>s", group = "[S]earch" },
+        {
+          "<leader>w",
+          group = "[W]indows",
+          proxy = "<c-w>",
+          expand = function()
+            return require("which-key.extras").expand.win()
+          end,
+        },
+        {
+          "<leader>?",
+          function()
+            require("which-key").show()
+          end,
+          desc = "Show Keymaps (which-key)",
         },
       },
     },
@@ -34,27 +62,21 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      require("lualine").setup()
-    end,
+    opts = {},
   },
 
-  -- 只使用winbar也就是面包屑，目前的配置还启用了tab栏，看看后面怎么禁用
-  {
-    "rebelot/heirline.nvim",
-    event = "VeryLazy",
-    config = function(_, opts)
-      opts.winbar = nil
-    end,
-  },
-  -- 面包屑下拉菜单
+  -- winbar中显示面包屑下拉菜单
   -- A polished, IDE-like, highly-customizable winbar for Neovim
   -- with drop-down menu support and multiple backends
   {
     "Bekaboo/dropbar.nvim",
     event = "VeryLazy",
+    dependencies = {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+    },
     config = function()
+      require("dropbar").setup()
       local dropbar_api = require("dropbar.api")
       vim.keymap.set("n", "<Leader>d;", dropbar_api.pick, { desc = "Pick symbols in winbar" })
       -- vim.keymap.set("n", "[;", dropbar_api.goto_context_start, { desc = "Go to start of current context" })
