@@ -2,12 +2,14 @@ return {
   -- auto pairs
   {
     "echasnovski/mini.pairs",
+    event = "InsertEnter", -- 进入插入模式时加载
     opts = {},
   },
 
   -- surround action
   {
     "echasnovski/mini.surround",
+    event = "InsertEnter", -- 进入插入模式时加载
     opts = {},
   },
 
@@ -20,6 +22,7 @@ return {
 
   {
     "folke/todo-comments.nvim",
+    event = "BufReadPost", -- 文件读取后加载
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {},
   },
@@ -27,6 +30,7 @@ return {
   -- 用于在 Neovim 中展示 LSP 诊断、快速修复、位置列表等信息的插件
   {
     "folke/trouble.nvim",
+    event = "VeryLazy",
     opts = {
       modes = {
         lsp = {

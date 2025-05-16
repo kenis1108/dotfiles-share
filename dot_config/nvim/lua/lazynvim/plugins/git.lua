@@ -1,6 +1,7 @@
 return {
   {
     "lewis6991/gitsigns.nvim",
+    event = "VeryLazy", -- 所有启动任务完成后加载
     opts = {
       signs = {
         add = { text = "▎" },

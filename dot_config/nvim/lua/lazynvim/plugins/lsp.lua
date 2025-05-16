@@ -4,12 +4,14 @@ return {
   -- treesitter 解析代码生成语法树，用于语法高亮、代码折叠等
   {
     "neovim/nvim-lspconfig",
+    event = "VeryLazy",
   },
 
   -- mason.nvim 主要功能是安装和管理开发工具，比如 LSP 服务器、DAP 适配器、格式化工具（如 stylua）和 linters（如 luacheck）。
   -- 避免在不同系统上安装工具，比如省去手动scoop install stylua
   {
     "mason-org/mason.nvim",
+    event = "VeryLazy",
     opts = {
       ui = {
         icons = {
@@ -24,12 +26,14 @@ return {
   -- mason-lspconfig.nvim 是 mason.nvim 和 nvim-lspconfig 的桥梁，主要用于自动配置由 mason 安装的 LSP 服务器
   {
     "mason-org/mason-lspconfig.nvim",
+    event = "VeryLazy",
     opts = {},
   },
 
   -- 配置需要自动安装的工具
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
+    event = "VeryLazy",
     config = function()
       require("mason-tool-installer").setup({
         ensure_installed = {
