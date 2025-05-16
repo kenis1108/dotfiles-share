@@ -31,6 +31,7 @@ return {
           "vue",
           "xml",
           "yaml",
+          "regex",
         },
         auto_install = true,
         sync_install = false,
