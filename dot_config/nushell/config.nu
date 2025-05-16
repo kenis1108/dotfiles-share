@@ -5,6 +5,7 @@ $env.config.show_banner = false
 
 # completions
 source ./completions/git/git-completions.nu
+source ./completions/npm/npm-completions.nu
 
 # yazi
 def --env y [...args] {
