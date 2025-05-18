@@ -21,6 +21,18 @@
   "workbench.colorCustomizations": {
     "editorBracketMatch.background": "#02fd30" // 自定义括号配对显示的颜色
   },
+  // javascript & typescript inlay hints
+  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "javascript.inlayHints.parameterNames.enabled": "all",
+  "javascript.inlayHints.parameterTypes.enabled": true,
+  "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "javascript.inlayHints.variableTypes.enabled": true,
+  "typescript.inlayHints.enumMemberValues.enabled": true,
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "typescript.inlayHints.variableTypes.enabled": true,
   /* explorer----------------------------------- */
   "explorer.confirmDelete": false, // 删除文件的时候不要弹窗
   "explorer.confirmPasteNative": false, // 从资源管理器直接复制粘贴文件到vscode不弹窗
@@ -38,8 +50,8 @@
   "vscode-neovim.ctrlKeysForInsertMode": [], // 让ctrl键在Insert Mode下不要穿透到neovim,保持由vscode处理
   "vscode-neovim.ctrlKeysForNormalMode": [], // 让ctrl键在Normal Mode下不要穿透到neovim,保持由vscode处理
   // Wangguixuan.var-translate-en
-  "var-translate-en.baiduSecretKey": "xxxxxxxxxxxx",
-  "var-translate-en.baiduAppid": "xxxxxxxxxxxx",
+  "var-translate-en.baiduSecretKey": "AHugFydsfqV4Bd69SZNk",
+  "var-translate-en.baiduAppid": "20201006000581501",
   "var-translate-en.translateServe": "baidu",
   // alefragnani.project-manager
   "projectManager.git.baseFolders": [

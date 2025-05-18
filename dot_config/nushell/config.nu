@@ -7,6 +7,15 @@ $env.config.show_banner = false
 source ./completions/git/git-completions.nu
 source ./completions/npm/npm-completions.nu
 
+# alias
+# chezmoi
+alias cc = cd (chezmoi source-path)
+alias ca = chezmoi apply --force
+alias ce = chezmoi edit --apply
+
+# lazygit
+alias lg = lazygit
+
 # yazi
 def --env y [...args] {
 	let tmp = (mktemp -t "yazi-cwd.XXXXXX")

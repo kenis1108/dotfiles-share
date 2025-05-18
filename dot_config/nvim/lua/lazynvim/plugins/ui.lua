@@ -8,18 +8,6 @@ return {
     end,
   },
 
-  -- icon
-  { "echasnovski/mini.icons", event = "VeryLazy" },
-
-  -- filemanager
-  {
-    "echasnovski/mini.files",
-    config = function()
-      require("mini.files").setup()
-      vim.keymap.set("n", "<Leader>e", MiniFiles.open, { desc = "[E]xplorer (mini.files)" })
-    end,
-  },
-
   -- show keybindings for possible keymaps with a popup
   {
     "folke/which-key.nvim",
@@ -61,7 +49,7 @@ return {
   -- statusline
   {
     "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {},
   },
 
