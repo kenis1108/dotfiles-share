@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/oil.nvim",
-    -- enabled = false,
+    enabled = false,
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
     config = function()
       -- Declare a global function to retrieve the current directory
