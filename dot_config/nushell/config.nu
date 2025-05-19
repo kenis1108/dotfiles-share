@@ -6,6 +6,8 @@ $env.config.show_banner = false
 # completions
 source ./completions/git/git-completions.nu
 source ./completions/npm/npm-completions.nu
+source ./completions/scoop/scoop-completions.nu
+source ./completions/rg/rg-completions.nu
 
 # alias
 # chezmoi
