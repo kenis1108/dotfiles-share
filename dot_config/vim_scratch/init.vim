@@ -21,7 +21,7 @@ set breakindent
 set linebreak
 set wildmenu
 set wildmode=longest:full,full
-set signcolumn
+set signcolumn=yes
 " set fillchars=foldopen:,foldclose:,fold:\ ,foldsep:\ ,diff:╱,eob:\ 
 
 set confirm
