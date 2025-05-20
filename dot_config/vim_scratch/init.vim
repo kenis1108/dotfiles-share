@@ -2,7 +2,12 @@
 " options
 " ================
 set packpath+=~/Desktop/vim_scratch
+
 set nocompatible
+
+filetype plugin indent on
+syntax enable
+
 set cursorline
 set cursorlineopt=both
 set relativenumber
@@ -10,8 +15,17 @@ set termguicolors
 set clipboard=unnamed,unnamedplus
 set completeopt=menu,menuone,noselect
 set backspace=indent,eol,start
-set scrolloff=10
+set scrolloff=4
+set sidescrolloff=8
 set breakindent
+set linebreak
+set wildmenu
+set wildmode=longest:full,full
+set signcolumn
+" set fillchars=foldopen:,foldclose:,fold:\ ,foldsep:\ ,diff:╱,eob:\ 
+
+set confirm
+set autowrite
 
 set splitright
 set splitbelow
@@ -19,12 +33,12 @@ set splitbelow
 set shiftwidth=2
 set tabstop=2
 set expandtab
+set shiftround
 
 set foldmethod=indent
 set foldlevel=99
 
-filetype plugin indent on
-syntax enable
+
 
 colorscheme catppuccin_mocha
 
@@ -66,7 +80,3 @@ snoremap <C-s> <cmd>w<cr><esc>
 " Quit All
 nnoremap <C-q> <cmd>qa<cr>
 nnoremap <leader>q <cmd>q<cr>
-
-
-
-
