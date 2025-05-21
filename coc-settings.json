@@ -1,0 +1,15 @@
+{
+  // 诊断符号配置
+  "diagnostic.errorSign": "✖",
+  "diagnostic.infoSign": "ℹ",
+  "diagnostic.hintSign": "💡",
+
+  // 显示设置
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextPrefix": "●",
+  "diagnostic.messageTarget": "float",
+
+  // 性能与行为
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.refreshOnInsertMode": false,
+}
