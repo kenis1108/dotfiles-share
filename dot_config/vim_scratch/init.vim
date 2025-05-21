@@ -169,3 +169,5 @@ colorscheme catppuccin_mocha
 for f in glob('./plugins-config/*.vim', 1, 1)
   execute 'source' f
 endfor
+
+
