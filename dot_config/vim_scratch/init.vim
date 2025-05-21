@@ -1,13 +1,10 @@
 " ================
 " options
 " ================
-set packpath+=~/Desktop/vim_scratch
-
-set nocompatible
-
 filetype plugin indent on
 syntax enable
 
+set nocompatible
 set encoding=utf-8
 set relativenumber
 set termguicolors
@@ -59,8 +56,6 @@ set undolevels=10000
 
 " set spell
 " set spelllang=en,zh
-
-colorscheme catppuccin_mocha
 
 " ================
 " autocmd
@@ -157,3 +152,20 @@ snoremap <C-s> <cmd>w<cr><esc>
 " Quit All
 nnoremap <C-q> <cmd>qa<cr>
 nnoremap <leader>q <cmd>q<cr>
+
+" ================
+" plugins
+" ================
+let g:custom_packpath = expand('~/Desktop/vim_scratch')
+if !isdirectory(g:custom_packpath)
+  call mkdir(g:custom_packpath, 'p')
+endif
+
+let &packpath = g:custom_packpath . ',' . &packpath " 添加到 packpath 的开头
+
+colorscheme catppuccin_mocha
+
+" TODO: 添加判断是否有同名的插件存在，存在再加载对应配置文件
+for f in glob('./plugins-config/*.vim', 1, 1)
+  execute 'source' f
+endfor
