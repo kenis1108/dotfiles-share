@@ -50,9 +50,9 @@
   "vscode-neovim.ctrlKeysForInsertMode": [], // 让ctrl键在Insert Mode下不要穿透到neovim,保持由vscode处理
   "vscode-neovim.ctrlKeysForNormalMode": [], // 让ctrl键在Normal Mode下不要穿透到neovim,保持由vscode处理
   // Wangguixuan.var-translate-en
-  "var-translate-en.baiduSecretKey": "AHugFydsfqV4Bd69SZNk",
-  "var-translate-en.baiduAppid": "20201006000581501",
-  "var-translate-en.translateServe": "baidu",
+  "var-translate-en.baiduSecretKey": "xxxxxx",
+  "var-translate-en.baiduAppid": "xxxxxx",
+  "var-translate-en.translateServe": "xxxxxx",
   // alefragnani.project-manager
   "projectManager.git.baseFolders": [
     "~/Desktop",

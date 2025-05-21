@@ -26,8 +26,8 @@ local config = {
 }
 
 if platform.is_win then
-	config.default_prog = io.popen("where pwsh.exe 2>nul"):read("*a") ~= "" and { "pwsh", "-NoLogo" }
-		or { "powershell" }
+	-- config.default_prog = io.popen("where pwsh.exe 2>nul"):read("*a") ~= "" and { "pwsh", "-NoLogo" } or { "powershell" }
+	config.default_prog = { os.getenv("USERPROFILE") .. "\\scoop\\apps\\nu\\current\\nu.exe" }
 	config.launch_menu = {
 		{ label = "PowerShell Core", args = { "pwsh", "-NoLogo" } },
 		{ label = "PowerShell Desktop", args = { "powershell" } },

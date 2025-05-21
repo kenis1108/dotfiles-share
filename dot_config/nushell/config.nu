@@ -6,6 +6,9 @@ $env.config.show_banner = false
 # completions
 source ./completions/git/git-completions.nu
 source ./completions/npm/npm-completions.nu
+source ./completions/scoop/scoop-completions.nu
+source ./completions/rg/rg-completions.nu
+source ./completions/uv/uv-completions.nu
 
 # alias
 # chezmoi
@@ -26,6 +29,11 @@ def --env y [...args] {
 	}
 	rm -fp $tmp
 }
+
+# fnm
+# See More About How To Use Fnm On NuShell From The issues https://github.com/Schniz/fnm/issues/463 
+fnm env --json | from json | load-env
+$env.PATH ++= [($env.FNM_MULTISHELL_PATH)]
 
 # starship
 mkdir ($nu.data-dir | path join "vendor/autoload")

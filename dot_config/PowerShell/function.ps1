@@ -266,7 +266,7 @@ function Start-Nvim-WithConfig {
 
     # 检查文件夹是否存在
     if (Test-Path -Path $configPath) {
-        $env:NVIM_APPNAME = $Config
+        $env:NVIM_APPNAME = $Config # 也可以使用 "nvim -u 配置文件路径" 来指定配置文件
         Write-Host "已设置 NVIM_APPNAME=$Config"
         nvim
     } else {
