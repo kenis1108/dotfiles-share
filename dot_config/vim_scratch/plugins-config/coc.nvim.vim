@@ -2,12 +2,14 @@
 
 let g:coc_config_home=g:custom_packpath
 let g:coc_global_extensions = [
+  \ 'coc-marketplace',
   \ 'coc-json',
   \ 'coc-html',
   \ 'coc-css',
   \ 'coc-tsserver',
   \ 'coc-sh',
-  \ 'coc-pyright'
+  \ 'coc-pyright',
+  \ 'coc-vimlsp'
   \ ]
 
 " May need for Vim (not Neovim) since coc.nvim calculates byte offset by count

@@ -1,3 +1,13 @@
+" ===============
+" packpath
+" ===============
+let g:custom_packpath = expand('~/Desktop/vim_scratch')
+if !isdirectory(g:custom_packpath)
+  call mkdir(g:custom_packpath, 'p')
+endif
+
+let &packpath = g:custom_packpath . ',' . &packpath " 添加到 packpath 的开头
+
 " ================
 " options
 " ================
@@ -14,6 +24,7 @@ set backspace=indent,eol,start
 set breakindent
 set linebreak
 set updatetime=300
+set mouse=a
 
 set list
 set listchars=tab:>-,eol:\ ,nbsp:%,trail:-
@@ -51,8 +62,8 @@ set shiftround
 set foldmethod=indent
 set foldlevel=99
 
-set undofile
-set undolevels=10000
+" set undofile
+" set undolevels=10000
 
 " set spell
 " set spelllang=en,zh
@@ -124,7 +135,7 @@ let g:maplocalleader=" "
 nnoremap <leader>rc <cmd>source ~/Desktop/vim_scratch/init.vim<cr>
 
 " Move to window using the <ctrl> hjkl keys
-nnoremap <C-h> <C-w>h 
+nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
@@ -156,18 +167,9 @@ nnoremap <leader>q <cmd>q<cr>
 " ================
 " plugins
 " ================
-let g:custom_packpath = expand('~/Desktop/vim_scratch')
-if !isdirectory(g:custom_packpath)
-  call mkdir(g:custom_packpath, 'p')
-endif
-
-let &packpath = g:custom_packpath . ',' . &packpath " 添加到 packpath 的开头
-
 colorscheme catppuccin_mocha
 
 " TODO: 添加判断是否有同名的插件存在，存在再加载对应配置文件
 for f in glob('./plugins-config/*.vim', 1, 1)
   execute 'source' f
 endfor
-
-
