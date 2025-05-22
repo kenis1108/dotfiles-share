@@ -1,7 +1,13 @@
+" ===============================================================================
+" Author: Kenneth <kennisdsg@outlook.com>
+" Create Date: 2023-10-23
+" Desc:  (Neo)Vim 配置文件❤(vimrc for Unix/Linux/Windows/Mac, GUI/Console)
+" ===============================================================================
+
 " ===============
 " packpath
 " ===============
-let g:custom_packpath = expand('~/Desktop/vim_scratch')
+let g:custom_packpath = expand('~/.config/vim')
 if !isdirectory(g:custom_packpath)
   call mkdir(g:custom_packpath, 'p')
 endif
@@ -14,8 +20,9 @@ let &packpath = g:custom_packpath . ',' . &packpath " 添加到 packpath 的开�
 filetype plugin indent on
 syntax enable
 
-set nocompatible
 set encoding=utf-8
+set fileencoding=utf-8
+set nocompatible
 set relativenumber
 set termguicolors
 set clipboard=unnamed,unnamedplus
@@ -25,12 +32,16 @@ set breakindent
 set linebreak
 set updatetime=300
 set mouse=a
+set autochdir
+
+set hlsearch
+set incsearch
 
 set list
-set listchars=tab:>-,eol:\ ,nbsp:%,trail:-
+set listchars=tab:»\ ,nbsp:␣,trail:·,eol:\ 
 
 set signcolumn=yes
-" set fillchars=foldopen:,foldclose:,fold:\ ,foldsep:\ ,diff:╱,eob:\ 
+" set fillchars=foldopen:,foldclose:,fold:\ ,foldsep:\ ,diff:╱,eob:\
 
 set winminwidth=5
 " set winminheight=5
@@ -155,21 +166,94 @@ vnoremap <A-j> :<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv
 vnoremap <A-k> :<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv
 
 " Save File
-nnoremap <C-s> <cmd>w<cr><esc> 
-inoremap <C-s> <cmd>w<cr><esc> 
-xnoremap <C-s> <cmd>w<cr><esc> 
-snoremap <C-s> <cmd>w<cr><esc> 
+nnoremap <C-s> <cmd>w<cr><esc>
+inoremap <C-s> <cmd>w<cr><esc>
+xnoremap <C-s> <cmd>w<cr><esc>
+snoremap <C-s> <cmd>w<cr><esc>
 
 " Quit All
 nnoremap <C-q> <cmd>qa<cr>
 nnoremap <leader>q <cmd>q<cr>
 
+nnoremap <silent> <esc> <cmd>nohlsearch<cr><esc>
+inoremap <silent> <esc> <cmd>nohlsearch<cr><esc>
+snoremap <silent> <esc> <cmd>nohlsearch<cr><esc>
+
 " ================
 " plugins
 " ================
-colorscheme catppuccin_mocha
+let s:plugins_dir = expand(g:custom_packpath . '/pack/plugins/start')
+if !isdirectory(s:plugins_dir)
+  call mkdir(s:plugins_dir, 'p')
+endif
 
-" TODO: 添加判断是否有同名的插件存在，存在再加载对应配置文件
-for f in glob('./plugins-config/*.vim', 1, 1)
-  execute 'source' f
-endfor
+" ============================================================================
+" 函数名称: InstallPlugin
+" 功能描述: 通过Git命令安装Vim插件
+" 入参格式: 二维数组 [[插件名称, Git命令], ...]
+" 返回值:  无
+" 依赖项:  s:plugins_dir 变量（插件安装根目录）
+" ============================================================================
+" 示例调用:
+" call InstallPlugin([
+" \ ['vim-fugitive', 'git clone https://github.com/tpope/vim-fugitive.git'],
+" \ ['coc.nvim', 'git clone --branch release https://github.com/neoclide/coc.nvim'],
+" \ ['nerdtree', 'git clone --depth 1 https://github.com/preservim/nerdtree']
+" \ ])
+" ============================================================================
+function! InstallPlugin(plugins)
+  for plugin in a:plugins
+    if len(plugin) < 2
+      echoerr '错误: 插件条目格式应为 [插件名称, Git命令]'
+      continue
+    endif
+
+    let name = plugin[0]           " 插件名称（安装后的目录名）
+    let git_cmd = plugin[1]        " 完整的Git克隆命令（不含目标路径）
+    let install_path = s:plugins_dir . '/' . name
+
+    " 检查插件是否已安装
+    if !isdirectory(install_path)
+      " 构建并执行Git命令
+      let cmd = git_cmd . ' ' . shellescape(install_path)
+      let result = system(cmd)
+
+      " 检查命令执行结果
+      if v:shell_error != 0
+        echoerr 'Failed to install plugin: ' . name
+        echoerr 'Executed command: ' . cmd
+        echoerr 'Error output: ' . result
+      else
+        echomsg 'Plugin installed successfully: ' . name
+      endif
+    else
+      echomsg 'Plugin already installed: ' . name
+    endif
+  endfor
+endfunction
+
+" 添加判断是否有同名的插件存在，存在再加载对应配置文件
+function! LoadPluginConfig()
+  for f in glob(g:custom_packpath . '/plugins-config/*.vim', 1, 1)
+    " 从配置文件名提取插件名
+    let plugin_name = fnamemodify(f, ':t:r')
+    " 检查 s:plugins_dir 下是否存在同名插件目录
+    if isdirectory(expand(s:plugins_dir . '/' . plugin_name))
+      execute 'source' f
+      echomsg 'Loaded config for: ' . plugin_name
+    else
+      echomsg 'Skipped missing plugin: ' . plugin_name
+    endif
+  endfor
+endfunction
+
+" 调试时可以去掉silent，来查看echomsg的输出
+silent call InstallPlugin([
+\ ['catppuccin', 'git clone https://github.com/catppuccin/vim.git'],
+\ ['coc.nvim', 'git clone --branch release https://github.com/neoclide/coc.nvim.git --depth=1'],
+\ ['vim-airline', 'git clone https://github.com/vim-airline/vim-airline.git'],
+\ ['vim-fugitive', 'git clone https://github.com/tpope/vim-fugitive.git'],
+\ ['indentLine', 'git clone https://github.com/Yggdroot/indentLine.git'],
+\ ])
+
+silent call LoadPluginConfig()
