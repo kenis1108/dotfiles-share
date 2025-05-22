@@ -1,6 +1,6 @@
 {
   // 诊断符号配置
-  "diagnostic.errorSign": "✖",
+  "diagnostic.errorSign":"❌",
   "diagnostic.warningSign": "⚠",
   "diagnostic.infoSign": "ℹ",
   "diagnostic.hintSign": "💡",

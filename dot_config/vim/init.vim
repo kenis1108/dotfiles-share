@@ -20,8 +20,9 @@ let &packpath = g:custom_packpath . ',' . &packpath " 添加到 packpath 的开�
 filetype plugin indent on
 syntax enable
 
-set nocompatible
 set encoding=utf-8
+set fileencoding=utf-8
+set nocompatible
 set relativenumber
 set termguicolors
 set clipboard=unnamed,unnamedplus
@@ -33,11 +34,14 @@ set updatetime=300
 set mouse=a
 set autochdir
 
+set hlsearch
+set incsearch
+
 set list
-set listchars=tab:>-,eol:\ ,nbsp:%,trail:-
+set listchars=tab:»\ ,nbsp:␣,trail:·,eol:\ 
 
 set signcolumn=yes
-" set fillchars=foldopen:,foldclose:,fold:\ ,foldsep:\ ,diff:╱,eob:\ 
+" set fillchars=foldopen:,foldclose:,fold:\ ,foldsep:\ ,diff:╱,eob:\
 
 set winminwidth=5
 " set winminheight=5
@@ -162,14 +166,18 @@ vnoremap <A-j> :<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv
 vnoremap <A-k> :<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv
 
 " Save File
-nnoremap <C-s> <cmd>w<cr><esc> 
-inoremap <C-s> <cmd>w<cr><esc> 
-xnoremap <C-s> <cmd>w<cr><esc> 
-snoremap <C-s> <cmd>w<cr><esc> 
+nnoremap <C-s> <cmd>w<cr><esc>
+inoremap <C-s> <cmd>w<cr><esc>
+xnoremap <C-s> <cmd>w<cr><esc>
+snoremap <C-s> <cmd>w<cr><esc>
 
 " Quit All
 nnoremap <C-q> <cmd>qa<cr>
 nnoremap <leader>q <cmd>q<cr>
+
+nnoremap <silent> <esc> <cmd>nohlsearch<cr><esc>
+inoremap <silent> <esc> <cmd>nohlsearch<cr><esc>
+snoremap <silent> <esc> <cmd>nohlsearch<cr><esc>
 
 " ================
 " plugins
@@ -199,17 +207,17 @@ function! InstallPlugin(plugins)
       echoerr '错误: 插件条目格式应为 [插件名称, Git命令]'
       continue
     endif
-    
+
     let name = plugin[0]           " 插件名称（安装后的目录名）
     let git_cmd = plugin[1]        " 完整的Git克隆命令（不含目标路径）
     let install_path = s:plugins_dir . '/' . name
-    
+
     " 检查插件是否已安装
     if !isdirectory(install_path)
       " 构建并执行Git命令
       let cmd = git_cmd . ' ' . shellescape(install_path)
       let result = system(cmd)
-      
+
       " 检查命令执行结果
       if v:shell_error != 0
         echoerr 'Failed to install plugin: ' . name
@@ -243,6 +251,9 @@ endfunction
 silent call InstallPlugin([
 \ ['catppuccin', 'git clone https://github.com/catppuccin/vim.git'],
 \ ['coc.nvim', 'git clone --branch release https://github.com/neoclide/coc.nvim.git --depth=1'],
+\ ['vim-airline', 'git clone https://github.com/vim-airline/vim-airline.git'],
+\ ['vim-fugitive', 'git clone https://github.com/tpope/vim-fugitive.git'],
+\ ['indentLine', 'git clone https://github.com/Yggdroot/indentLine.git'],
 \ ])
 
 silent call LoadPluginConfig()
