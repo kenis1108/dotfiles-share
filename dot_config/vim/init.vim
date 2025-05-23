@@ -23,7 +23,7 @@ syntax enable
 set encoding=utf-8
 set fileencoding=utf-8
 set nocompatible
-set relativenumber
+set number relativenumber
 set termguicolors
 set clipboard=unnamed,unnamedplus
 set completeopt=menu,menuone,noselect
