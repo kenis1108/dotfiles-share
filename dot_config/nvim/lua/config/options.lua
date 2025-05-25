@@ -64,3 +64,8 @@ vim.opt.expandtab = true
 -- fold
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevel = 99
+
+-- modeline
+vim.opt.modeline = true
+vim.opt.modelines = 2
+
