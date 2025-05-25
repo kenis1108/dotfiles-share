@@ -73,6 +73,9 @@ set shiftround
 set foldmethod=indent
 set foldlevel=99
 
+set modeline
+set modelines=2
+
 " set undofile
 " set undolevels=10000
 

@@ -26,5 +26,3 @@ let g:airline_mode_map = {
   \ 'v'      : 'V',
   \ 'V'      : 'V-L',
   \ }
-
-
