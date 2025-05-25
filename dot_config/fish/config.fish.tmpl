@@ -1,0 +1,13 @@
+set -x EDITOR nvim
+set -x PATH "$HOME/.local/bin" $PATH
+
+{{- if .chezmoi.osRelease }}
+  {{- if eq .chezmoi.osRelease.id "alpine" }}
+#--------------------
+# auto start
+#--------------------
+/usr/sbin/sshd
+  {{- end }}
+{{- end }}
+
+# vim: set ft=fish :

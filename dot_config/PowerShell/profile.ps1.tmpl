@@ -154,3 +154,20 @@ if (Get-Command uv -ErrorAction SilentlyContinue) {
 if (Get-Command zoxide -ErrorAction SilentlyContinue) {
   Invoke-Expression (& { (zoxide init powershell | Out-String) })
 }
+
+# OSC 7 on Windows with powershell (with starship)
+# wezterm 集成 powershell 打开新tab/pane自动集成上一个powershell的目录路径
+if (Get-Command wezterm -ErrorAction SilentlyContinue) {
+  $prompt = ""
+  function Invoke-Starship-PreCommand {
+    $current_location = $executionContext.SessionState.Path.CurrentLocation
+    if ($current_location.Provider.Name -eq "FileSystem") {
+      $ansi_escape = [char]27
+      $provider_path = $current_location.ProviderPath -replace "\\", "/"
+      $prompt = "$ansi_escape]7;file://${env:COMPUTERNAME}/${provider_path}$ansi_escape\"
+    }
+    $host.ui.Write($prompt)
+  }
+}
+
+# vim: set ft=powershell :
