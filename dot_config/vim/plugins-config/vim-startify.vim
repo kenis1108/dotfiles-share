@@ -68,3 +68,5 @@ let g:startify_lists = [
   \ ]
 
 let g:startify_session_dir = g:custom_packpath . '/session'
+
+let g:startify_enable_special = 0
