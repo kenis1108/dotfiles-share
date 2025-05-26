@@ -182,6 +182,10 @@ nnoremap <silent> <esc> <cmd>nohlsearch<cr><esc>
 inoremap <silent> <esc> <cmd>nohlsearch<cr><esc>
 snoremap <silent> <esc> <cmd>nohlsearch<cr><esc>
 
+" 使用 <leader>v 触发可视块模式
+nnoremap <leader>v <C-v>
+vnoremap <leader>v <C-v>
+
 " ================
 " plugins
 " ================

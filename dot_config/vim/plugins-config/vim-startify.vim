@@ -55,7 +55,16 @@ function s:fzfFiles()
     \ ]
 endfunction
 
+let g:startify_commands = [
+  \ {'f': ['Find File', 'Files']},
+  \ {'r': ['Recent File', 'History']},
+  \ ]
+
 let g:startify_lists = [
+  \ { 'type': 'commands',              'header': ['   Commands']      },
   \ { 'type': function('s:fzfFiles'),  'header': ['   Fzf']           },
+  \ { 'type': 'sessions',              'header': ['   Sessions']      },
   \ { 'type': 'files',                 'header': ['   Recent Files']  },
   \ ]
+
+let g:startify_session_dir = g:custom_packpath . '/session'
