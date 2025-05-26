@@ -1,4 +1,11 @@
 return {
+  -- color
+  {
+    "norcalli/nvim-colorizer.lua",
+    event = "VeryLazy",
+    opts = {},
+  },
+
   -- auto pairs
   {
     "echasnovski/mini.pairs",
