@@ -51,8 +51,13 @@ return {
   -- statusline
   {
     "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {},
+    opts = {
+      options = {
+        disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard" } },
+      },
+    },
   },
 
   -- winbar中显示面包屑下拉菜单
@@ -116,7 +121,7 @@ return {
               { "Blog ", hl = "SnacksDashboardDesc" },
               { "https://kenis1108.github.io", hl = "SnacksDashboardKey" },
             },
-            gap = 1, 
+            gap = 1,
             padding = 1,
           },
           { section = "keys", gap = 1, padding = 1 },
