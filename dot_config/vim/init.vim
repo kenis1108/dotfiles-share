@@ -259,6 +259,7 @@ silent call InstallPlugin([
 \ ['indentLine', 'git clone https://github.com/Yggdroot/indentLine.git'],
 \ ['fzf', 'git clone https://github.com/junegunn/fzf'],
 \ ['fzf.vim', 'git clone https://github.com/junegunn/fzf.vim'],
+\ ['vim-startify', 'git clone https://github.com/mhinz/vim-startify']
 \ ])
 
 silent call LoadPluginConfig()
