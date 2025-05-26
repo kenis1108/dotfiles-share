@@ -39,6 +39,8 @@ def --env y [...args] {
 	rm -fp $tmp
 }
 
+# vim
+alias vim = vim -u ~/.config/vim/init.vim
 # fnm
 # See More About How To Use Fnm On NuShell From The issues https://github.com/Schniz/fnm/issues/463 
 fnm env --json | from json | load-env

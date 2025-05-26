@@ -1,9 +1,9 @@
-" 自定义ASCII图案
+" ASCII header
 let g:startify_custom_header = [
 \ [
 \ '                                                                               ',
 \ '                                                                               ',
-\ '                   __                 .__                                      ',        
+\ '                   __                 .__                                      ',
 \ '          |  | __ ____   ____ |__| ______                                      ',
 \ '          |  |/ // __ \ /    \|  |/  ___/                                      ',
 \ '          |    <\  ___/|   |  \  |\___ \                                       ',
@@ -29,9 +29,9 @@ let g:startify_custom_header = [
 \ '                                                                               ',
 \ ],
 \ [
-\ "",
-\ "",
-\ "     .-. .-')     ('-.       .-') _          .-')   ", 
+\ '',
+\ '',
+\ "     .-. .-')     ('-.       .-') _          .-')                              ",
 \ "     \\  ( OO )  _(  OO)     ( OO ) )        ( OO ).  ",
 \ "     ,--. ,--. (,------.,--./ ,--,' ,-.-') (_)---\\_) ",
 \ "     |  .'   /  |  .---'|   \\ |  |\\ |  |OO)/    _ |  ",
@@ -48,9 +48,25 @@ let g:startify_custom_header = [
 \ ]
 \ ][2]
 
-" 自定义目录
+function s:fzfFiles()
+  return [
+    \ { 'line': 'Find File', 'cmd': 'Files' },
+    \ { 'line': 'Rg',    'cmd': 'Rg'    },
+    \ ]
+endfunction
+
+let g:startify_commands = [
+  \ {'f': ['Find File', 'Files']},
+  \ {'r': ['Recent File', 'History']},
+  \ ]
+
 let g:startify_lists = [
-      \ {'type':'dir','header':['   dir:']},
-      \ {'type':'files','header':['   files:']},
-      \ {'type':'sessions','header':['   mysessions:']},
-      \ ]
+  \ { 'type': 'commands',              'header': ['   Commands']      },
+  \ { 'type': function('s:fzfFiles'),  'header': ['   Fzf']           },
+  \ { 'type': 'sessions',              'header': ['   Sessions']      },
+  \ { 'type': 'files',                 'header': ['   Recent Files']  },
+  \ ]
+
+let g:startify_session_dir = g:custom_packpath . '/session'
+
+let g:startify_enable_special = 0

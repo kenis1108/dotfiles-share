@@ -1,3 +1,5 @@
+local is_windows = vim.fn.has("win32") == 1
+
 return {
   -- themes
   {
@@ -49,8 +51,13 @@ return {
   -- statusline
   {
     "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {},
+    opts = {
+      options = {
+        disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard" } },
+      },
+    },
   },
 
   -- winbar中显示面包屑下拉菜单
@@ -88,6 +95,54 @@ return {
             horizontal = "─",
             vertical = "│",
             arrow = ">",
+          },
+        },
+      },
+    },
+  },
+
+  -- dashboard
+  {
+    "folke/snacks.nvim",
+    event = "VeryLazy",
+    priority = 1000,
+    opts = {
+      dashboard = {
+        sections = {
+          {
+            section = "terminal",
+            cmd = is_windows and "wsl colorscript -e square" or "colorscript -e square",
+            height = 5,
+            padding = 1,
+          },
+          {
+            text = {
+              { "  ", hl = "SnacksDashboardIcon" },
+              { "Blog ", hl = "SnacksDashboardDesc" },
+              { "https://kenis1108.github.io", hl = "SnacksDashboardKey" },
+            },
+            gap = 1,
+            padding = 1,
+          },
+          { section = "keys", gap = 1, padding = 1 },
+          { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+          { section = "startup" },
+        },
+        preset = {
+          header = [[
+            .-. .-')     ('-.       .-') _          .-')             ('-. .-.          ('-. .-. 
+            \  ( OO )  _(  OO)     ( OO ) )        ( OO ).          ( OO )  /         ( OO )  / 
+            ,--. ,--. (,------.,--./ ,--,' ,-.-') (_)---\_)         ,--. ,--.     ,--.,--. ,--. 
+            |  .'   /  |  .---'|   \ |  |\ |  |OO)/    _ |    .-')  |  | |  | .-')| ,||  | |  | 
+            |      /,  |  |    |    \|  | )|  |  \\  :` `.  _(  OO) |   .|  |( OO |(_||   .|  | 
+            |     ' _)(|  '--. |  .     |/ |  |(_/ '..`''.)(,------.|       || `-'|  ||       | 
+            |  .   \   |  .--' |  |\    | ,|  |_.'.-._)   \ '------'|  .-.  |,--. |  ||  .-.  | 
+            |  |\   \  |  `---.|  | \   |(_|  |   \       /         |  | |  ||  '-'  /|  | |  | 
+            `--' '--'  `------'`--'  `--'  `--'    `-----'          `--' `--' `-----' `--' `--' 
+          ]],
+          keys = {
+            { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+            { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
           },
         },
       },

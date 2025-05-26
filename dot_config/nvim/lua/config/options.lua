@@ -4,6 +4,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.opt.number = true
 -- Make line numbers default
 vim.opt.relativenumber = true
 
@@ -68,4 +69,3 @@ vim.opt.foldlevel = 99
 -- modeline
 vim.opt.modeline = true
 vim.opt.modelines = 2
-
