@@ -55,7 +55,8 @@ return {
       },
     },
     config = function()
-      require("lspconfig").lua_ls.setup({
+      local lspconfig = require("lspconfig")
+      lspconfig.lua_ls.setup({
         settings = {
           Lua = {
             hint = {
@@ -63,6 +64,21 @@ return {
             },
           },
         },
+      })
+      lspconfig.yamlls.setup({
+        settings = {
+          yaml = {
+            schemaStore = {
+              enable = true,
+            },
+            -- 其他配置
+            format = { enabled = true },
+            validate = true,
+            completion = true,
+            hover = true,
+          },
+        },
+        filetypes = { "yaml", "yml" },
       })
     end,
   },
