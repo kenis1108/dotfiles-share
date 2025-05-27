@@ -4,6 +4,8 @@
 " Desc:  (Neo)Vim 配置文件❤(vimrc for Unix/Linux/Windows/Mac, GUI/Console)
 " ===============================================================================
 
+let g:vim_start_time = reltime()
+
 " ===============
 " packpath
 " ===============
@@ -76,6 +78,8 @@ set foldlevel=99
 set modeline
 set modelines=2
 
+set noswapfile
+
 " set undofile
 " set undolevels=10000
 
@@ -85,59 +89,10 @@ set modelines=2
 " ================
 " autocmd
 " ================
-" 定义高亮组和自动命令
-" 1. 确保定义高亮组（黄色背景）
-highlight YankHighlight ctermbg=Yellow guibg=#ff966c
-
-" 2. 自动命令组
-augroup HighlightYank
+augroup StartupTime
   autocmd!
-  autocmd TextYankPost * call s:HighlightYank(visualmode())
+  autocmd VimEnter * echom printf('Vim fully loaded in %.2f ms', reltimefloat(reltime(g:vim_start_time)) * 1000)
 augroup END
-
-" 3. 核心高亮函数
-function! s:HighlightYank(mode)
-  " 清除旧高亮和定时器
-  silent! call matchdelete(get(w:, 'yank_highlight_id', -1))
-  silent! call timer_stop(get(w:, 'yank_timer_id', -1))
-
-  " 获取选区边界（兼容所有模式）
-  let [start_lnum, start_col] = [line("'["), col("'[") - 1]  " 列号转0-based
-  let [end_lnum, end_col] = [line("']"), col("']") - 1]
-
-  " 构建匹配模式
-  let pattern = ''
-  if a:mode ==# 'V' || (a:mode == '' && start_lnum != end_lnum)
-    " 行模式或yy整行操作
-    let pattern = printf('\%%>%dl\%%<%dl', start_lnum - 1, end_lnum + 1)
-  elseif a:mode ==# "\<C-v>"
-    " 块模式（矩形选区）
-    let pattern = printf('\%%>%dl\%%<%dl\%%>%dc\%%<%dc',
-          \ start_lnum - 1, end_lnum + 1,
-          \ min([start_col, end_col]),
-          \ max([start_col, end_col]) + 1)
-  else
-    " 字符模式（处理跨行选择）
-    if start_lnum == end_lnum
-      " 单行选择
-      let pattern = printf('\%%%dl\%%>%dc\%%<%dc',
-            \ start_lnum, min([start_col, end_col]),
-            \ max([start_col, end_col]) + 1)
-    else
-      " 跨行选择（三段式匹配）
-      let pattern = printf('\(\%%%dl\%%>%dc\)\|\(\%%>%dl\%%<%dl\)\|\(\%%%dl\%%<%dc\)',
-            \ start_lnum, min([start_col, end_col]),
-            \ start_lnum, end_lnum,
-            \ end_lnum, max([start_col, end_col]) + 1)
-    endif
-  endif
-
-  " 安全应用高亮
-  if !empty(pattern)
-    let w:yank_highlight_id = matchadd('YankHighlight', pattern)
-    let w:yank_timer_id = timer_start(300, {-> execute('silent! call matchdelete('.w:yank_highlight_id.')')})
-  endif
-endfunction
 
 " ================
 " keymaps
@@ -263,7 +218,7 @@ silent call InstallPlugin([
 \ ['indentLine', 'git clone https://github.com/Yggdroot/indentLine.git'],
 \ ['fzf', 'git clone https://github.com/junegunn/fzf'],
 \ ['fzf.vim', 'git clone https://github.com/junegunn/fzf.vim'],
-\ ['vim-startify', 'git clone https://github.com/mhinz/vim-startify']
+\ ['vim-startify', 'git clone https://github.com/mhinz/vim-startify'],
 \ ])
 
 silent call LoadPluginConfig()
