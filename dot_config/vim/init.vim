@@ -219,6 +219,8 @@ silent call InstallPlugin([
 \ ['fzf', 'git clone https://github.com/junegunn/fzf'],
 \ ['fzf.vim', 'git clone https://github.com/junegunn/fzf.vim'],
 \ ['vim-startify', 'git clone https://github.com/mhinz/vim-startify'],
+\ ['vim-surround', 'git clone https://github.com/tpope/vim-surround'],
+\ ['vim-sandwich', 'git clone https://github.com/machakann/vim-sandwich'],
 \ ])
 
 silent call LoadPluginConfig()
