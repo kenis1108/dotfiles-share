@@ -96,6 +96,7 @@ $FZF_DEFAULT_COMMAND_VALUE = "powershell.exe -NoLogo -NoProfile -Noninteractive 
 # [console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
 $env:EDITOR = "nvim"
+[Environment]::SetEnvironmentVariable("EDITOR", "nvim", "User")
 {{- if eq .chezmoi.os "windows" }}
 # $env:VIMINIT="source $env:USERPROFILE\.config\vim\vimrc" # 自定义Vim配置文件路径, 会影响到nvim，使用nvim的时候注释掉
 
