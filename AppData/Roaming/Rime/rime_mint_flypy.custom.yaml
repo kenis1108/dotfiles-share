@@ -1,0 +1,15 @@
+# Rime Custom
+# encoding: utf-8
+
+patch:
+  "engine/translators/+":
+    - table_translator@simple
+  "menu/page_size": 10
+
+  simple:
+    dictionary: ""
+    user_dict: dicts/simple
+    db_class: stabledb
+    enable_completion: false
+    enable_sentence: false
+    initial_quality: 2

@@ -1,0 +1,11 @@
+# Rime table
+# coding: utf-8
+#@/db_name	simple.txt
+#@/db_type	tabledb
+#
+#
+#
+
+2435311979@qq.com	Qqmail
+kenisdsg1108@gmail.com	Gmail
+129571202106010386	ZKCode
