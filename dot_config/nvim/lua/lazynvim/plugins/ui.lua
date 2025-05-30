@@ -7,6 +7,13 @@ return {
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       vim.cmd([[colorscheme tokyonight]])
+      vim.api.nvim_set_hl(0, "Normal", {
+        bg = nil,
+        ctermbg = nil,
+      })
+      vim.api.nvim_set_hl(0, "SignColumn", {
+        bg = nil,
+      })
     end,
   },
 
@@ -152,6 +159,7 @@ return {
             -- { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
             { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
             { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+            { icon = " ", key = "q", desc = "Quit", action = ":qa" },
           },
         },
       },

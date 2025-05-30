@@ -48,3 +48,31 @@ map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
 -- mason
 map("n", "<leader>m", "<cmd>Mason<cr>", { desc = "Mason" })
+
+-- 使用 <leader>v 触发可视块模式
+map({"n","v"}, "<leader>v", "<C-V>", { desc = "Visual Block Mode" })
+
+function _G.toggle_background()
+  local normal_hl = vim.api.nvim_get_hl(0, { name = "Normal" })
+
+  if normal_hl.bg and normal_hl.bg == 0x222436 then
+    vim.api.nvim_set_hl(0, "Normal", {
+      bg = nil,
+      ctermbg = nil,
+    })
+    vim.api.nvim_set_hl(0, "SignColumn", {
+      bg = nil,
+    })
+  else
+    vim.api.nvim_set_hl(0, "Normal", {
+      fg = 0xc8d3f5,
+      bg = 0x222436,
+    })
+    vim.api.nvim_set_hl(0, "SignColumn", {
+      fg = 0x3b4261,
+      bg = 0x222436,
+    })
+  end
+end
+-- toggle background
+map("n", "<leader>bg", "<cmd>lua toggle_background()<CR>", { desc = "Toggle Background" })
