@@ -49,6 +49,9 @@ map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 -- mason
 map("n", "<leader>m", "<cmd>Mason<cr>", { desc = "Mason" })
 
+-- 使用 <leader>v 触发可视块模式
+map({"n","v"}, "<leader>v", "<C-V>", { desc = "Visual Block Mode" })
+
 function _G.toggle_background()
   local normal_hl = vim.api.nvim_get_hl(0, { name = "Normal" })
 
