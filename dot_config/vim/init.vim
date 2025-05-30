@@ -61,6 +61,7 @@ set wildmenu
 set wildmode=longest:full,full
 
 set confirm
+set autoread
 set autowrite
 
 set splitright
@@ -140,6 +141,24 @@ snoremap <silent> <esc> <cmd>nohlsearch<cr><esc>
 " 使用 <leader>v 触发可视块模式
 nnoremap <leader>v <C-v>
 vnoremap <leader>v <C-v>
+
+function! ToggleBackground()
+  " 获取当前 Normal 组的高亮设置
+  let l:normal_hl = execute('hi Normal')
+
+  " 检查当前 guibg 是否不是 NONE
+  if l:normal_hl =~ 'guibg=#1E1E2E'
+    " 如果不是 NONE，则清除背景和前景
+    hi Normal guifg=NONE guibg=NONE ctermbg=NONE
+    hi SignColumn guibg=NONE
+  else
+    " 如果是 NONE，则恢复默认颜色
+    hi Normal guifg=#CDD6F4 guibg=#1E1E2E
+    hi SignColumn term=standout ctermfg=11 ctermbg=8 guifg=#45475A guibg=#1E1E2E
+  endif
+endfunction
+" 切换背景透明
+nnoremap <Leader>bg :call ToggleBackground()<CR>
 
 " ================
 " plugins
